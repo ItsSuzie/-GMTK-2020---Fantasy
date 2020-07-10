@@ -2,7 +2,7 @@
 
 
 /// <summary>
-/// Manages and defines the input manager of the player
+/// Defines the 
 /// 
 /// 
 /// </summary>
@@ -12,41 +12,19 @@ public class PlayerInputManager : MonoBehaviour
     /// TODO: Prepare code for the new unity input system
     /// </summary>
 
-    // Enums
-    #region enums
-
-    // Defines which player this player is
-    public enum PLAYER_NUMBER
-    {
-        PLAYER_ONE,
-        PLAYER_TWO
-    };
-
-
-    #endregion
-
     // variables
     #region Variables
 
     // public Variables
     // ---------------------------------------------
 
-    [Header("Player Number")]
-    public PLAYER_NUMBER player_number; // Defines which number the player is
 
-    [Header("Gamepad Icons")]
-    
+    // Player input data - stores bools if a button has been pressed.
+    // use the bool's to check initiate input from the corresponding script needed
 
-    // Player input data
-    private bool p2ControlState = false;
-    private bool canControlP2 = false;
-    private bool dropOutPlayer = false;
     private bool canMove = true;
     private Vector2 moveDirection;
-    private bool isAttacking;
     private bool isSprinting;
-    private bool killPlayer;
-    private bool killPlayerP2;
 
     // Timers
     private float flashTimer = 1.0f;
@@ -103,25 +81,11 @@ public class PlayerInputManager : MonoBehaviour
     /// </summary>
     private void getInput()
     {
-        if (player_number == PLAYER_NUMBER.PLAYER_ONE)
-        {
-                canMove = true;
-                // Move the player
-                // Get horizontal and vertical input
-                moveDirection.x = Input.GetAxisRaw("Horizontal_p1");
-                moveDirection.y = Input.GetAxisRaw("Vertical_p1");
-        }
-        else    // Player 2
-        {
-            if (p2ControlState)
-            {
-                canMove = true;
-                // Move the player
-                // Get horizontal and vertical input
-                moveDirection.x = Input.GetAxisRaw("Horizontal_p2");
-                moveDirection.y = Input.GetAxisRaw("Vertical_p2");
-            }
-        }
+        canMove = true;
+        // Move the player
+        // Get horizontal and vertical input
+        moveDirection.x = Input.GetAxisRaw("Horizontal");
+        moveDirection.y = Input.GetAxisRaw("Vertical");
     }
 
     #endregion
@@ -130,19 +94,6 @@ public class PlayerInputManager : MonoBehaviour
     #region Getters/Setters
 
     // Player input data
-    public bool P2ControlState
-    {
-        get { return p2ControlState; }
-    }
-
-    /// <summary>
-    /// Returns if p2 can be controlled
-    /// </summary>
-    public bool CanControlP2
-    {
-        get { return canControlP2; }
-    }
-
     /// <summary>
     ///  Returns if player can move
     /// </summary>
@@ -158,32 +109,11 @@ public class PlayerInputManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Returns if player if pressing attacking key
-    /// </summary>
-    public bool IsAttacking
-    {
-        get { return isAttacking; }
-    }
-
-    /// <summary>
     /// Returns if player is pressing sprint key
     /// </summary>
     public bool IsSprinting
     {
         get { return isSprinting; }
-    }
-
-    /// <summary>
-    /// Kill bind
-    /// </summary>
-    public bool KillPlayer
-    {
-        get { return killPlayer; }
-    }
-
-    public bool KillPlayer2
-    {
-        get { return killPlayerP2; }
     }
 
     #endregion

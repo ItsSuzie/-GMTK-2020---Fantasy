@@ -48,30 +48,30 @@ public class PlayerMovement : MonoBehaviour
         // Initialize components
         inputmanager = GetComponent<PlayerInputManager>();
         rb2d = GetComponent<Rigidbody2D>();
-        //_tether = GetComponent<PlayerTetherController>();
+        anim = GetComponent<Animator>();
 
         // Setting facing direction
         // Player moving and facing upwards, moving up diagonals left or right
         if (facingDirection == PLAYER_FACING_DIRECTION.UP)
         {
-            anim.SetFloat("Horizontal", 0);
-            anim.SetFloat("Vertical", 1);
+            // anim.SetFloat("Horizontal", 0);
+            // anim.SetFloat("Vertical", 1);
         }
         else if (facingDirection == PLAYER_FACING_DIRECTION.DOWN)
         {
-            anim.SetFloat("Horizontal", 0);
-            anim.SetFloat("Vertical", -1);
+            // anim.SetFloat("Horizontal", 0);
+            // anim.SetFloat("Vertical", -1);
         }
         // If player if moving and facing right, moving right diagonals up or down
         else if (facingDirection == PLAYER_FACING_DIRECTION.RIGHT)
         {
-            anim.SetFloat("Horizontal", 1);
-            anim.SetFloat("Vertical", 0);
+            // anim.SetFloat("Horizontal", 1);
+            // anim.SetFloat("Vertical", 0);
         }
         else if (facingDirection == PLAYER_FACING_DIRECTION.LEFT)
         {
-            anim.SetFloat("Horizontal", -1);
-            anim.SetFloat("Vertical", 0);
+            // anim.SetFloat("Horizontal", -1);
+            // anim.SetFloat("Vertical", 0);
         }
     }
 
@@ -98,31 +98,28 @@ public class PlayerMovement : MonoBehaviour
         if (moveDirection.y > 0 && (moveDirection.x <= 0.5f || moveDirection.x >= -0.5f))
         {
             facingDirection = PLAYER_FACING_DIRECTION.UP;
-            anim.SetFloat("Horizontal", 0);
-            anim.SetFloat("Vertical", 1);
+            // anim.SetFloat("Horizontal", 0);
+            // anim.SetFloat("Vertical", 1);
         }
         else if (moveDirection.y < 0 && (moveDirection.x <= 0.5f || moveDirection.x >= -0.5f))
         {
             facingDirection = PLAYER_FACING_DIRECTION.DOWN;
-            anim.SetFloat("Horizontal", 0);
-            anim.SetFloat("Vertical", -1);
+            // anim.SetFloat("Horizontal", 0);
+            // anim.SetFloat("Vertical", -1);
         }
         // If player if moving and facing right, moving right diagonals up or down
         else if (moveDirection.x > 0 && (moveDirection.y <= 0.5f || moveDirection.y >= -0.5f))
         {
             facingDirection = PLAYER_FACING_DIRECTION.RIGHT;
-            anim.SetFloat("Horizontal", 1);
-            anim.SetFloat("Vertical", 0);
+            // anim.SetFloat("Horizontal", 1);
+            // anim.SetFloat("Vertical", 0);
         }
         else if (moveDirection.x < 0 && (moveDirection.y <= 0.5f || moveDirection.y >= -0.5f))
         {
             facingDirection = PLAYER_FACING_DIRECTION.LEFT;
-            anim.SetFloat("Horizontal", -1);
-            anim.SetFloat("Vertical", 0);
+            // anim.SetFloat("Horizontal", -1);
+            // anim.SetFloat("Vertical", 0);
         }
-
-        // If the players are too far away from each other, players cannot separate any longer. 
-        // Can only move each other closer
 
         // Stores the temp move position
         Vector2 tempMove = Vector2.zero;
@@ -143,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
         {
             // Sets position, moves player
             rb2d.MovePosition(tempMove);
-            anim.SetTrigger("isMoving");
+            // anim.SetTrigger("isMoving");
         }
         else
         {
@@ -152,23 +149,6 @@ public class PlayerMovement : MonoBehaviour
 
 
     }
-
-    /*
-    /// <summary>
-    /// Determines movement is allowed when players are tehtered together
-    /// </summary>
-    /// <returns></returns>
-    private bool movementAllowed(ref Vector2 tempMove)
-    {
-
-        if (_tether.isCloser(tempMove * 5 + (Vector2)transform.position))
-            return true;
-
-        tempMove = Vector2.zero;
-            return false;
-    }
-    */
-
 
     #endregion
 
