@@ -10,10 +10,10 @@ public class fileIOManager : MonoBehaviour
     #region Variables
 
     public List<string> debuffFileNames;  
-    public List<string> mainHealthFileNames;
+    public List<string> mainHealthFileNames;    
 
-    public string rootFilePath;
-    private string filePath;
+    public string rootFilePath;     // The file path root directory where the files will be stored
+    private string filePath;        // the whole file path
 
     #endregion
 
@@ -28,12 +28,24 @@ public class fileIOManager : MonoBehaviour
         {
             DirectoryInfo di = Directory.CreateDirectory(filePath);
         }
+        // if the directory exists already, delete everything in that directory
+        else
+        {
+            string[] files = Directory.GetFiles(filePath);
+            for(int i = 0; i < files.Length; ++i)
+                File.Delete(files[i]);
+        }
+
+
+
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-            createFileFromString("myFile");  
+        if(Input.GetKeyDown(KeyCode.J))
+            createFileFromDebuffListRandom();
+        if(Input.GetKeyDown(KeyCode.K))
+            createFileFromMainHealthFileNamesRandom();
     }
 
 
@@ -46,7 +58,27 @@ public class fileIOManager : MonoBehaviour
         Debug.Log("Creating file " + fileToCreate + "(" + (fileCount + 1) + ")");
         File.CreateText(filePath + fileToCreate + "(" + (fileCount + 1) + ")");
     }
-    
+    public void createFileFromDebuffListRandom()
+    {
+        // Get random file
+        string fileToCreate = debuffFileNames[UnityEngine.Random.Range(0,debuffFileNames.Count)];
+        createFileFromString(fileToCreate);
+    }
+    public void createFileFromDeBuffListIndex(int i)
+    {
+        // get file from index
+        string fileToCreate = debuffFileNames[i];
+        createFileFromString(fileToCreate);
+    }
+    public void createFileFromMainHealthFileNamesRandom()
+    {
+        string fileToCreate = mainHealthFileNames[UnityEngine.Random.Range(0, mainHealthFileNames.Count)];
+        createFileFromString(fileToCreate);
+    }
+    public void createFileFromMainHealthFileNamesIndex(int i)
+    {
+        string fileToCreate = mainHealthFileNames[i];
+    }
 
 
 
