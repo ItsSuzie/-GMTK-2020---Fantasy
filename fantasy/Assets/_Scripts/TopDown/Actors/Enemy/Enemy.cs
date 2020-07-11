@@ -5,7 +5,7 @@ public class Enemy : MonoBehaviour
     public int HP;
     private int maxHP;
     [Range(0, 1)] public float hpLossMultiplier = 0.25f;
-    public Transform player;
+    [HideInInspector] public Transform player;
     public float speed = 2f;
     private float playerDistance;
     public float minDistance = 1f;
@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
         //get something player == something something get instance()
         boxCollider = GetComponent<BoxCollider2D>();
         rb2d = GetComponent<Rigidbody2D>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         iOManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<fileIOManager>();
 
         maxHP = HP;
