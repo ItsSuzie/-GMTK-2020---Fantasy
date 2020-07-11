@@ -9,6 +9,9 @@ public class PlayerCombatController : MonoBehaviour
     #region Variables
 
 
+    public Rect[] hitBoxes; // 0 = up, 1 = down, 2 = left, 3 = right
+    public LayerMask hitMask;
+
     // Private variables
 
     // Component references
@@ -61,6 +64,8 @@ public class PlayerCombatController : MonoBehaviour
             else if (attackDirection == PlayerMovement.PLAYER_FACING_DIRECTION.RIGHT) {
                 attackOffset = new Vector2(0, 0); //something3
             }
+
+            attackOffset = hitBoxes[attackDirection];
             
             Collider2D[] hits = Physics2D.OverlapBoxAll((Vector2)transform.position + attackOffset, new Vector2(50, 50), 0, 0);
             foreach (Collider2D hit in hits) {
