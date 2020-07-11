@@ -40,8 +40,10 @@ public class fileIOManager : MonoBehaviour
 
         DeleteDirectory();
         createDirectory();
+
+
         Process.Start(@filePath);
-        Process.Start(@"Notepad.exe", filePath + "/../README.forest");
+        // Process.Start(@"Notepad.exe", filePath + "/../README.forest");
     }
 
     private void Update()

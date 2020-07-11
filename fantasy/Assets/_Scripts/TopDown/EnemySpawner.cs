@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
 
     private bool isActive;
 
-    [SerializeField] private GameObject enemyType;
+    [SerializeField] private Enemy enemyType;
     [SerializeField] private float spawnArea;
 
     [SerializeField] private int enemiesPerPoint;
@@ -30,7 +30,7 @@ public class EnemySpawner : MonoBehaviour
 
             foreach (GameObject spawnPoint in enemySpawnPoints)
             {
-                int numOfEnemies = (enemiesPerPoint - enemyRandomness == 0) ? enemiesPerPoint + Random.Range(enemyRandomness, -enemyRandomness) : 0; //im sorry eveyrone hates ternery but this looks pretty cleann
+                int numOfEnemies = (enemiesPerPoint - enemyRandomness > 0) ? enemiesPerPoint + Random.Range(enemyRandomness, -enemyRandomness) : 0; //im sorry eveyrone hates ternery but this looks pretty cleann
 
                 for (int enemy = 1; enemy < numOfEnemies; enemy++)
                 {
