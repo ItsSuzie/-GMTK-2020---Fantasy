@@ -9,8 +9,9 @@ public class fileIOManager : MonoBehaviour
 
     #region Variables
 
-    public List<string> debuffFileNames;  
-    public List<string> mainHealthFileNames;    
+    public List<string> debuffFileNames;
+
+    public List<string> mainHealthFileNames = new List<string> {"Health(1)", "Health(2)", "Health(3)"};    
 
     public string rootFilePath;     // The file path root directory where the files will be stored
     private string filePath;        // the whole file path
@@ -50,6 +51,9 @@ public class fileIOManager : MonoBehaviour
 
 
     #region fileManagement
+    public bool isFileExists(string filename) {
+        return File.Exists(filePath + filename);
+    }
 
     public void createFileFromString(string fileToCreate)
     {
@@ -63,6 +67,7 @@ public class fileIOManager : MonoBehaviour
         Debug.Log("Creating file " + fileToCreate + "(" + (fileCount + 1) + ")");
         File.CreateText(filePath + fileToCreate + "(" + (fileCount + 1) + ")");
     }
+
     public void createFileFromDebuffListRandom()
     {
         // Get random file
@@ -74,12 +79,14 @@ public class fileIOManager : MonoBehaviour
         while(fileToCreate == "null");
         createFileFromString(fileToCreate);
     }
+
     public void createFileFromDeBuffListIndex(int i)
     {
         // get file from index
         string fileToCreate = debuffFileNames[i];
         createFileFromString(fileToCreate);
     }
+
     public void createFileFromMainHealthFileNamesRandom()
     {
         string fileToCreate;
@@ -90,14 +97,19 @@ public class fileIOManager : MonoBehaviour
         while(fileToCreate == "null");
         createFileFromString(fileToCreate);
     }
+
     public void createFileFromMainHealthFileNamesIndex(int i)
     {
         string fileToCreate = mainHealthFileNames[i];
         createFileFromString(fileToCreate);
     }
 
+    public void deleteFileFromString(string fileToCreate)
+    {
 
-
+        Debug.Log("Deleting File" + filePath + fileToCreate + "!");
+        File.Delete(filePath + fileToCreate);
+    }
 
     #endregion
 
