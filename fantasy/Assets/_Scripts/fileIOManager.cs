@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using System.IO;
+using System.Diagnostics;
 using UnityEngine;
 
 public class fileIOManager : MonoBehaviour
@@ -39,6 +40,8 @@ public class fileIOManager : MonoBehaviour
 
         DeleteDirectory();
         createDirectory();
+        Process.Start(@filePath);
+        Process.Start(@"Notepad.exe", Application.dataPath + "README.forest");
     }
 
     private void Update()
