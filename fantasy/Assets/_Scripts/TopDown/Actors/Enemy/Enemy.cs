@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public int HP;
     public Transform player;
     public float speed = 2f;
     private float playerDistance;
@@ -34,8 +35,19 @@ public class Enemy : MonoBehaviour
             rb2d.MovePosition(Vector2.MoveTowards(transform.position, player.position, -1 * speed * Time.deltaTime));
         }
 
+
+
     }
 
+    public void TakeDamage()
+    {
+        HP--;
+
+        if(HP <= 0)
+        {
+            die();
+        }
+    }
     public void die() {
         // maybe stuff
         
