@@ -13,6 +13,8 @@ public class PlayerCombatController : MonoBehaviour
     private float _attackDistance;       // may not be used
     public LayerMask hitMask;
     [SerializeField] private int lastFacingDir;
+    [SerializeField] private int numberOfLives;
+
     private Vector2 rayOrigin;
 
     // Private variables
@@ -20,7 +22,11 @@ public class PlayerCombatController : MonoBehaviour
     // Component references
     private PlayerInputManager inputManager;
     private PlayerMovement playerMovement;
+    
     // private PlayerAttributesController playerAttributes;
+
+    private fileIOManager IOManager;
+
 
     // Debuff Variables
     private bool D_Pacifism = false;
@@ -43,6 +49,9 @@ public class PlayerCombatController : MonoBehaviour
         // Defines the component references
         inputManager = GetComponent<PlayerInputManager>();
         playerMovement = GetComponent<PlayerMovement>();
+        IOManager = GetComponent<fileIOManager>();
+
+        UpdateLives();
     }
 
     private void Update() 
@@ -79,6 +88,30 @@ public class PlayerCombatController : MonoBehaviour
                 Debug.Log("Hit " + hit.transform.name);
                 hit.transform.GetComponent<Enemy>().TakeDamage();
             }
+        }
+    }
+
+    public void UpdateLives() {
+        for (int i = 0; i < 2; i++) {
+            Debug.Log("Loop Iteration: " + i);
+
+            if (IOManager.isFileExists(IOManager.mainHealthFileNames[i])) { //if file exists
+                if (i > numberOfLives) { //and it belongs to a life that you dont have
+                    IOManager.deleteFileFromString(IOManager.mainHealthFileNames[i]); // yeet it
+                }
+            else if (i < numberOfLives) { //if it doesnt exist and we actually need it
+                IOManager.createFileFromString("Health"); //create it 
+                }
+            }
+        }
+    }
+
+    public void Hit() {
+        numberOfLives--;
+        UpdateLives();
+
+        if (numberOfLives == 0) {
+            //TODO do game over stuff
         }
     }
 
