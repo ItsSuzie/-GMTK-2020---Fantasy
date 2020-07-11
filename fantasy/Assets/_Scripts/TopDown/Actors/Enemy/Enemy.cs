@@ -30,6 +30,8 @@ public class Enemy : MonoBehaviour
 
         iOManager.CreateFileFromStringNoDuplicates(transform.name);
         fileFound = true;
+
+        EnemyCount++;
     }
 
     // Update is called once per frame
