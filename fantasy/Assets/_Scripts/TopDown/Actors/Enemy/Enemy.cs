@@ -20,6 +20,12 @@ public class Enemy : MonoBehaviour
 
     private bool fileFound = false;
 
+    void Awake()
+    {
+        EnemyCount++;
+        Debug.Log(enemyCount.ToString());
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +40,7 @@ public class Enemy : MonoBehaviour
         iOManager.CreateFileFromStringNoDuplicates(transform.name);
         fileFound = true;
 
-        EnemyCount++;
+
     }
 
     // Update is called once per frame
