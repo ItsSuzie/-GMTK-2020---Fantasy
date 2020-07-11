@@ -10,10 +10,11 @@ public class PlayerCombatController : MonoBehaviour
 
 
     public Rect[] attackRect; // 0 = up, 1 = down, 2 = left, 3 = right
-    private Vector2 attackDirection;    // may not be used
-    private float attackDistance;       // may not be used
+    private Vector2 _attackDirection = Vector2.zero;    // may not be used
+    private float _attackDistance;       // may not be used
     public LayerMask hitMask;
     [SerializeField] private int lastFacingDir;
+    private Vector2 rayOrigin;
 
     // Private variables
 
@@ -56,27 +57,28 @@ public class PlayerCombatController : MonoBehaviour
         // If not pacifised, attack
         if (!D_Pacifism)
         {
+            Debug.Log("Attacking");
             if (attackDirection == PlayerMovement.PLAYER_FACING_DIRECTION.UP) {
-                attackOffset = attackRect[0].position + (Vector2)transform.position; //something
                 lastFacingDir = 0;
             }
             else if (attackDirection == PlayerMovement.PLAYER_FACING_DIRECTION.DOWN) {
-                attackOffset = attackRect[1].position + (Vector2)transform.position; //something1
                 lastFacingDir = 1;
             }
             else if (attackDirection == PlayerMovement.PLAYER_FACING_DIRECTION.LEFT) {
-                attackOffset = attackRect[2].position + (Vector2)transform.position; //something2
                 lastFacingDir = 2;
             }
             else if (attackDirection == PlayerMovement.PLAYER_FACING_DIRECTION.RIGHT) {
-                attackOffset = attackRect[3].position + (Vector2)transform.position; //something3
                 lastFacingDir = 3;
             }
             
-            Collider2D[] hits = Physics2D.OverlapBoxAll(attackOffset, attackRect[lastFacingDir].size, 0, hitMask);
-            foreach (Collider2D hit in hits) {
-                Debug.Log("Hit " + hit.name);
-                hit.GetComponent<Enemy>().TakeDamage();
+
+            rayOrigin = (Vector2)transform.position + attackRect[lastFacingDir].center;
+
+            // Create raycast box for checking if enemy has been hit
+            RaycastHit2D[] hits = Physics2D.BoxCastAll(rayOrigin, attackRect[lastFacingDir].size, 0, _attackDirection, _attackDistance, hitMask);
+            foreach (RaycastHit2D hit in hits) {
+                Debug.Log("Hit " + hit.transform.name);
+                hit.transform.GetComponent<Enemy>().TakeDamage();
             }
         }
     }
@@ -85,15 +87,15 @@ public class PlayerCombatController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        rayOrigin = (Vector2)transform.position + attackRect[lastFacingDir].center;
         Gizmos.color = Color.red;
-        Gizmos.matrix = Matrix4x4.TRS((Vector2)this.transform.position + attackRect[lastFacingDir].center, this.transform.rotation, Vector3.one);
+        Gizmos.matrix = Matrix4x4.TRS(rayOrigin, this.transform.rotation, Vector3.one);
         Gizmos.DrawWireCube(Vector2.zero, attackRect[lastFacingDir].size);
-        Gizmos.matrix = Matrix4x4.TRS((Vector2)this.transform.position + attackRect[lastFacingDir].center + (attackDirection.normalized * attackDistance), this.transform.rotation, Vector3.one);
+        Gizmos.matrix = Matrix4x4.TRS(rayOrigin + (_attackDirection.normalized * _attackDistance), this.transform.rotation, Vector3.one);
         Gizmos.DrawWireCube(Vector2.zero, attackRect[lastFacingDir].size);
         Gizmos.color = Color.red;
-        Gizmos.matrix = Matrix4x4.TRS((Vector2)this.transform.position + attackRect[lastFacingDir].center, Quaternion.identity, Vector3.one);
-        Gizmos.DrawLine(Vector2.zero, attackDirection.normalized * attackDistance);
-
+        Gizmos.matrix = Matrix4x4.TRS(rayOrigin, Quaternion.identity, Vector3.one);
+        Gizmos.DrawLine(Vector2.zero, _attackDirection.normalized * _attackDistance);
     }
 
 

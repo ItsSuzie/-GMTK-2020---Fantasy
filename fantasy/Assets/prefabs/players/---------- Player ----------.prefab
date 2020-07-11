@@ -1133,6 +1133,86 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8330437602973745654}
     m_Modifications:
+    - target: {fileID: 6232801468280799928, guid: 2c7a5431a5e7a7043b2041fbde7932f3,
+        type: 3}
+      propertyPath: attackRect.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232801468280799928, guid: 2c7a5431a5e7a7043b2041fbde7932f3,
+        type: 3}
+      propertyPath: attackRect.Array.data[0].x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232801468280799928, guid: 2c7a5431a5e7a7043b2041fbde7932f3,
+        type: 3}
+      propertyPath: attackRect.Array.data[0].width
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232801468280799928, guid: 2c7a5431a5e7a7043b2041fbde7932f3,
+        type: 3}
+      propertyPath: attackRect.Array.data[0].height
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232801468280799928, guid: 2c7a5431a5e7a7043b2041fbde7932f3,
+        type: 3}
+      propertyPath: attackRect.Array.data[1].x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232801468280799928, guid: 2c7a5431a5e7a7043b2041fbde7932f3,
+        type: 3}
+      propertyPath: attackRect.Array.data[1].y
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232801468280799928, guid: 2c7a5431a5e7a7043b2041fbde7932f3,
+        type: 3}
+      propertyPath: attackRect.Array.data[1].width
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232801468280799928, guid: 2c7a5431a5e7a7043b2041fbde7932f3,
+        type: 3}
+      propertyPath: attackRect.Array.data[1].height
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232801468280799928, guid: 2c7a5431a5e7a7043b2041fbde7932f3,
+        type: 3}
+      propertyPath: attackRect.Array.data[2].x
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232801468280799928, guid: 2c7a5431a5e7a7043b2041fbde7932f3,
+        type: 3}
+      propertyPath: attackRect.Array.data[2].y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232801468280799928, guid: 2c7a5431a5e7a7043b2041fbde7932f3,
+        type: 3}
+      propertyPath: attackRect.Array.data[2].width
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232801468280799928, guid: 2c7a5431a5e7a7043b2041fbde7932f3,
+        type: 3}
+      propertyPath: attackRect.Array.data[2].height
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232801468280799928, guid: 2c7a5431a5e7a7043b2041fbde7932f3,
+        type: 3}
+      propertyPath: attackRect.Array.data[3].y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232801468280799928, guid: 2c7a5431a5e7a7043b2041fbde7932f3,
+        type: 3}
+      propertyPath: attackRect.Array.data[3].width
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232801468280799928, guid: 2c7a5431a5e7a7043b2041fbde7932f3,
+        type: 3}
+      propertyPath: attackRect.Array.data[3].height
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232801468280799928, guid: 2c7a5431a5e7a7043b2041fbde7932f3,
+        type: 3}
+      propertyPath: hitMask.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
     - target: {fileID: 8980895286349140481, guid: 2c7a5431a5e7a7043b2041fbde7932f3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1191,6 +1271,16 @@ PrefabInstance:
     - target: {fileID: 8980895286349140488, guid: 2c7a5431a5e7a7043b2041fbde7932f3,
         type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8980895286349140488, guid: 2c7a5431a5e7a7043b2041fbde7932f3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8980895286349140488, guid: 2c7a5431a5e7a7043b2041fbde7932f3,
+        type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []

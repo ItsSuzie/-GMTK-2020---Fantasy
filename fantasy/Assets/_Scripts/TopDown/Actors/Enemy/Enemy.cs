@@ -27,7 +27,8 @@ public class Enemy : MonoBehaviour
     {
 
         //simply move towards player,  like a ghost maybe
-        transform.LookAt(player); // TODO this acts like 3d stuff not good
+        float rot_z = Mathf.Atan2(player.transform.position.y, player.transform.position.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
         playerDistance = Vector2.Distance(transform.position, player.position);
 
         if (playerDistance < minDistance)
