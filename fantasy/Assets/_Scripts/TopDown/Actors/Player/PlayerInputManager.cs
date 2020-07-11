@@ -33,6 +33,10 @@ public class PlayerInputManager : MonoBehaviour
     // component references
     private BoxCollider2D box2d;
 
+
+    // Debuff Values
+    private bool D_AdverseMovements = false;
+
     #endregion
 
 
@@ -84,8 +88,18 @@ public class PlayerInputManager : MonoBehaviour
         canMove = true;
         // Move the player
         // Get horizontal and vertical input
-        moveDirection.x = Input.GetAxisRaw("Horizontal");
-        moveDirection.y = Input.GetAxisRaw("Vertical");
+        if(!D_AdverseMovements)
+        {
+            // Default
+            moveDirection.x = Input.GetAxisRaw("Horizontal");
+            moveDirection.y = Input.GetAxisRaw("Vertical");
+        }
+        else    // Debuffed by adverse movements
+        {
+            moveDirection.x = -Input.GetAxisRaw("Horizontal");
+            moveDirection.y = -Input.GetAxisRaw("Vertical");
+        }
+        
     }
 
     #endregion
@@ -114,6 +128,13 @@ public class PlayerInputManager : MonoBehaviour
     public bool IsSprinting
     {
         get { return isSprinting; }
+    }
+
+
+    // setting debuff
+    public bool setAdverse
+    {
+        set { D_AdverseMovements = value; }
     }
 
     #endregion

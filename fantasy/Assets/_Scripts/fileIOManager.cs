@@ -54,6 +54,11 @@ public class fileIOManager : MonoBehaviour
     public void createFileFromString(string fileToCreate)
     {
         // Get number of files of the same file
+        if(fileToCreate == "null")
+        {
+            // dont create file, just return
+            return;
+        }
         int fileCount = Directory.GetFiles(filePath, fileToCreate + "(*)", SearchOption.TopDirectoryOnly).Length;
         Debug.Log("Creating file " + fileToCreate + "(" + (fileCount + 1) + ")");
         File.CreateText(filePath + fileToCreate + "(" + (fileCount + 1) + ")");
@@ -61,7 +66,12 @@ public class fileIOManager : MonoBehaviour
     public void createFileFromDebuffListRandom()
     {
         // Get random file
-        string fileToCreate = debuffFileNames[UnityEngine.Random.Range(0,debuffFileNames.Count)];
+        string fileToCreate;
+        do 
+        {
+            fileToCreate = debuffFileNames[UnityEngine.Random.Range(0,debuffFileNames.Count)];
+        }
+        while(fileToCreate == "null");
         createFileFromString(fileToCreate);
     }
     public void createFileFromDeBuffListIndex(int i)
@@ -72,7 +82,12 @@ public class fileIOManager : MonoBehaviour
     }
     public void createFileFromMainHealthFileNamesRandom()
     {
-        string fileToCreate = mainHealthFileNames[UnityEngine.Random.Range(0, mainHealthFileNames.Count)];
+        string fileToCreate;
+        do
+        {
+            fileToCreate = mainHealthFileNames[UnityEngine.Random.Range(0, mainHealthFileNames.Count)];
+        }
+        while(fileToCreate == "null");
         createFileFromString(fileToCreate);
     }
     public void createFileFromMainHealthFileNamesIndex(int i)

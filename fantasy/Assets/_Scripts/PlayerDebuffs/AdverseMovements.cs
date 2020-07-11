@@ -1,18 +1,29 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.IO;
 
 public class AdverseMovements : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private bool adverseFound = false;
+    public PlayerInputManager playerInput;
+    private fileIOManager io;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        io = GetComponentInParent<fileIOManager>();
+    }
+    private void Update()
+    {
+        string[] files = Directory.GetFiles(io.Path, "AdverseMovements(*)");
+        if (files.Length > 0)
+        {
+            adverseFound = true;
+            playerInput.setAdverse = true;
+        }
+        else
+        {
+            adverseFound = false;
+            playerInput.setAdverse = false;
+        }
+
     }
 }
