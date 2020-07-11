@@ -19,7 +19,7 @@ public class AdverseMovements : MonoBehaviour
             adverseFound = true;
             playerInput.setAdverse = true;
         }
-        else
+        else if (files.Length == 0)
         {
             adverseFound = false;
             playerInput.setAdverse = false;

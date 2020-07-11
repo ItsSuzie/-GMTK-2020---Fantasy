@@ -9,12 +9,14 @@ public class Vertigo : MonoBehaviour
     public float wobbleSpeed = 2f;
     public float wobbleAmmount = 2f;
     private fileIOManager io;
+    private Camera cam;
 
     private bool vertigoFound = false;
 
     private void Start()
     {
         io = GetComponentInParent<fileIOManager>();
+        cam = Camera.main;
     }
 
     private void Update()
@@ -23,11 +25,11 @@ public class Vertigo : MonoBehaviour
         if(files.Length > 0)
         {
             vertigoFound = true;
-            Camera.main.transform.Rotate(new Vector3(0, 0, Mathf.Sin(Time.time * wobbleSpeed) / wobbleAmmount));
+            cam.transform.Rotate(new Vector3(0, 0, Mathf.Sin(Time.time * wobbleSpeed) / wobbleAmmount));
         }
-        else
+        else if (files.Length == 0)
         {
-            Camera.main.transform.rotation = Quaternion.identity;
+            cam.transform.rotation = Quaternion.identity;
             vertigoFound = false;
         }
     }
