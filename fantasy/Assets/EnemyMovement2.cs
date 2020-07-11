@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement1 : MonoBehaviour
+public class EnemyMovement2 : MonoBehaviour
 {
     public Transform player;
     public float speed = 2f;
@@ -27,9 +27,12 @@ public class EnemyMovement1 : MonoBehaviour
         //simply move towards player,  like a ghost maybe
         transform.LookAt(player);
         playerDistance = Vector2.Distance(transform.position, player.position);
-        
 
-        rb2d.MovePosition(Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime));
+        if (playerDistance < minDistance)
+        {
+            rb2d.MovePosition(Vector2.MoveTowards(transform.position, player.position, -1 * speed * Time.deltaTime));
+        }
+        
 
 
     }
