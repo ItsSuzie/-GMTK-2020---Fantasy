@@ -15,7 +15,7 @@ public class PlayerInputController : MonoBehaviour
     // Component references
     private PlayerInputManager inputManager;
     private PlayerMovement playerMovement;
-    // private PlayerCombatController playerCombat;
+    private PlayerCombatController playerCombat;
     // private PlayerAttributesController playerAttributes;
 
     #endregion
@@ -34,7 +34,7 @@ public class PlayerInputController : MonoBehaviour
         // Defines the component references
         inputManager = GetComponent<PlayerInputManager>();
         playerMovement = GetComponent<PlayerMovement>();
-        // playerCombat = GetComponent<PlayerCombatController>();
+        playerCombat = GetComponent<PlayerCombatController>();
         // playerAttributes = GetComponent<PlayerAttributesController>();
 
         // Sending the current player number to the attribues controlelr
@@ -49,9 +49,9 @@ public class PlayerInputController : MonoBehaviour
     private void Update()
     {
         // // If player attacks, initiate atttack
-        // if (inputManager.IsAttacking)
-        //     playerCombat.initiateAttack(playerMovement.FacingDirection);
-
+        if (inputManager.IsAttacking) 
+            playerCombat.initiateAttack(playerMovement.FacingDirection);
+            
         // if (!inputManager.IsAttacking || playerCombat.cooldownTimer <= 0 || !playerAttributes.playerStaggered || !playerAttributes.PlayerDied)
         //     playerCombat.FacingDir = playerMovement.FacingDirection;
 
