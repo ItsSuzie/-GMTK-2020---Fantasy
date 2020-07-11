@@ -25,6 +25,7 @@ public class PlayerInputManager : MonoBehaviour
     private bool canMove = true;
     private Vector2 moveDirection;
     private bool isSprinting;
+    private bool isAttacking;
 
     // Timers
     private float flashTimer = 1.0f;
@@ -99,7 +100,8 @@ public class PlayerInputManager : MonoBehaviour
             moveDirection.x = -Input.GetAxisRaw("Horizontal");
             moveDirection.y = -Input.GetAxisRaw("Vertical");
         }
-        
+
+        isAttacking = Input.GetKeyDown("z");
     }
 
     #endregion
@@ -128,6 +130,11 @@ public class PlayerInputManager : MonoBehaviour
     public bool IsSprinting
     {
         get { return isSprinting; }
+    }
+
+    public bool IsAttacking
+    {
+        get { return isAttacking; }
     }
 
 
