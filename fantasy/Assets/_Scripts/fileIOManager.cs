@@ -93,6 +93,7 @@ public class fileIOManager : MonoBehaviour
     public void createFileFromMainHealthFileNamesIndex(int i)
     {
         string fileToCreate = mainHealthFileNames[i];
+        createFileFromString(fileToCreate);
     }
 
 
