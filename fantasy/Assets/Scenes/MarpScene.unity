@@ -357,7 +357,7 @@ MonoBehaviour:
   spawnArea: 2
   enemiesPerPoint: 5
   enemyRandomness: 0
-  totalNumberOfEnemies: 5
+  totalNumberOfEnemies: 28
 --- !u!1 &1944136812
 GameObject:
   m_ObjectHideFlags: 0

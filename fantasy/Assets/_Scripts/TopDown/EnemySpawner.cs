@@ -7,6 +7,9 @@ public class EnemySpawner : MonoBehaviour
 
     private bool isActive;
 
+    public float spawnRate;
+    private float SpawnRateTimer = 0;
+
     [SerializeField] private Enemy enemyType;
     [SerializeField] private float spawnArea;
 
@@ -22,6 +25,8 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         totalNumberOfEnemies = enemyType.enemyCount;
 
         if (isActive) 
@@ -31,10 +36,13 @@ public class EnemySpawner : MonoBehaviour
             foreach (GameObject spawnPoint in enemySpawnPoints)
             {
                 int numOfEnemies = (enemiesPerPoint - enemyRandomness > 0) ? enemiesPerPoint + Random.Range(enemyRandomness, -enemyRandomness) : 0; //im sorry eveyrone hates ternery but this looks pretty cleann
-
-                for (int enemy = 1; enemy < numOfEnemies; enemy++)
+                if (SpawnRateTimer < 0)
                 {
-                    Instantiate(enemyType, new Vector2(spawnPoint.transform.position.x + Random.Range(spawnArea, -spawnArea), spawnPoint.transform.position.y + Random.Range(spawnArea, -spawnArea)), Quaternion.identity);
+                    for (int enemy = 1; enemy < numOfEnemies; enemy++)
+                    {
+                        Instantiate(enemyType, new Vector2(spawnPoint.transform.position.x + Random.Range(spawnArea, -spawnArea), spawnPoint.transform.position.y + Random.Range(spawnArea, -spawnArea)), Quaternion.identity);
+                    }
+                    SpawnRateTimer = spawnRate;
                 }
             }
             isActive = false;
@@ -43,5 +51,17 @@ public class EnemySpawner : MonoBehaviour
         if (totalNumberOfEnemies == 0) { 
             isActive = true;
         }
+
+
+
+        if(SpawnRateTimer > 0)
+        {
+            SpawnRateTimer -= Time.deltaTime;
+            // if (SpawnRateTimer <= 0)
+            // {
+            //     SpawnRateTimer = spawnRate;
+            // }
+        }
+
     }
 }
