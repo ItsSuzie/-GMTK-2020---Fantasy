@@ -85,4 +85,9 @@ public class fileIOManager : MonoBehaviour
 
     #endregion
 
+
+    public string Path
+    {
+        get { return filePath; }
+    }
 }
