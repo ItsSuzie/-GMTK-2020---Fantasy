@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 
-public class fileio : MonoBehaviour
+public class fileio_test : MonoBehaviour
 {
 
     string path; 
@@ -10,8 +10,16 @@ public class fileio : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        #if UNITY_EDITOR
+        path = Application.dataPath + "/forest/";
+        pathfile = Application.dataPath + "/forest/helloworld";
+        #endif
+
+        #if UNITY_STANDALONE
         path = Application.dataPath + "/../forest/";
         pathfile = Application.dataPath + "/../forest/helloworld";
+        #endif
+
         Debug.LogError(path);
 
         if(!Directory.Exists(path))     
