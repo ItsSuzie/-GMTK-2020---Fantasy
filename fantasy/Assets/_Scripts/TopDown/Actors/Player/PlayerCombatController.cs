@@ -63,6 +63,7 @@ public class PlayerCombatController : MonoBehaviour
             
             Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position + attackOffset, new Vector2(50, 50), 0, 0);
             foreach (Collider2D hit in hits) {
+                hit.gameObject.die(); // function we will make that will delete the object + maybe other stuff
             }
         }
     }
