@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using static PlayerMovement;
 
 public class PlayerCombatController : MonoBehaviour
 {
@@ -43,27 +44,27 @@ public class PlayerCombatController : MonoBehaviour
 
 
     // Initiate Attack
-    public void initiateAttack(playerMovement.PLAYER_FACING_DIRECTION attackDirection)
+    public void initiateAttack(PlayerMovement.PLAYER_FACING_DIRECTION attackDirection)
     {
         // If not pacifised, attack
         if (!D_Pacifism)
         {
-            if (attackDirection == 0) 
-                attackOffset = //something
+            if (attackDirection == PlayerMovement.PLAYER_FACING_DIRECTION.UP) {
+                attackOffset = new Vector2(0, 0); //something
+            }
+            else if (attackDirection == PlayerMovement.PLAYER_FACING_DIRECTION.DOWN) {
+                attackOffset = new Vector2(0, 0); //something1
+            }
+            else if (attackDirection == PlayerMovement.PLAYER_FACING_DIRECTION.LEFT) {
+                attackOffset = new Vector2(0, 0); //something2
+            }
+            else if (attackDirection == PlayerMovement.PLAYER_FACING_DIRECTION.RIGHT) {
+                attackOffset = new Vector2(0, 0); //something3
+            }
             
-            elseif (attackDirection == 1) {
-                attackOffset = //something1
-            
-            elseif (attackDirection == 2) 
-                attackOffset = //something2
-            
-            elseif (attackDirection == 3) 
-                attackOffset = //something3
-            
-            
-            Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position + attackOffset, new Vector2(50, 50), 0, 0);
+            Collider2D[] hits = Physics2D.OverlapBoxAll((Vector2)transform.position + attackOffset, new Vector2(50, 50), 0, 0);
             foreach (Collider2D hit in hits) {
-                hit.gameObject.die(); // function we will make that will delete the object + maybe other stuff
+                hit.GetComponent<Enemy>().die();
             }
         }
     }

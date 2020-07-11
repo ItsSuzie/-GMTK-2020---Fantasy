@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement1 : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     public Transform player;
     public float speed = 2f;
@@ -16,6 +16,7 @@ public class EnemyMovement1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //get something player == something something get instance()
         boxCollider = GetComponent<BoxCollider2D>();
         rb2d = GetComponent<Rigidbody2D>();
     }
@@ -25,12 +26,19 @@ public class EnemyMovement1 : MonoBehaviour
     {
 
         //simply move towards player,  like a ghost maybe
-        transform.LookAt(player);
+        transform.LookAt(player); // TODO this acts like 3d stuff not good
         playerDistance = Vector2.Distance(transform.position, player.position);
+
+        if (playerDistance < minDistance)
+        {
+            rb2d.MovePosition(Vector2.MoveTowards(transform.position, player.position, -1 * speed * Time.deltaTime));
+        }
+
+    }
+
+    public void die() {
+        // maybe stuff
         
-
-        rb2d.MovePosition(Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime));
-
-
+        Destroy(this.gameObject);
     }
 }

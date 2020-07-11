@@ -170,9 +170,9 @@ public class PlayerMovement : MonoBehaviour
     #region getters/setters
 
     // Get player facing direction
-    public int FacingDirection
+    public PLAYER_FACING_DIRECTION FacingDirection
     {
-        get { return (int)facingDirection; }
+        get { return facingDirection; }
     }
 
 
