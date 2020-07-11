@@ -30,11 +30,11 @@ public class EnemySpawner : MonoBehaviour
 
             foreach (GameObject spawnPoint in enemySpawnPoints)
             {
-                numOfEnemies = (enemiesPerPoint - enemyRandomness == 0) ? enemiesPerPoint + enemyRandomness() : 0; //im sorry eveyrone hates ternery but this looks pretty cleann
+                int numOfEnemies = (enemiesPerPoint - enemyRandomness == 0) ? enemiesPerPoint + Random.Range(enemyRandomness, -enemyRandomness) : 0; //im sorry eveyrone hates ternery but this looks pretty cleann
 
                 for (int enemy = 1; enemy < numOfEnemies; enemy++)
                 {
-                    Instantiate(enemyType, new Vector2(spawnPoint.transform.position.x + Random.Range(spawnArea, -spawnArea), spawnPoint.position.y + Random.Range(spawnArea, -spawnArea)), Quaternion.identity);
+                    Instantiate(enemyType, new Vector2(spawnPoint.transform.position.x + Random.Range(spawnArea, -spawnArea), spawnPoint.transform.position.y + Random.Range(spawnArea, -spawnArea)), Quaternion.identity);
                 }
             }
             isActive = false;
