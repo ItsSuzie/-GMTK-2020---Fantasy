@@ -55,6 +55,12 @@ public class fileIOManager : MonoBehaviour
         return File.Exists(filePath + filename);
     }
 
+    /// Create file assuming the file will not have duplicates.
+    public void CreateFileFromStringNoDuplicates(string fileToCreate)
+    {
+        File.CreateText(filePath + fileToCreate);
+    }
+
     public void createFileFromString(string fileToCreate)
     {
         // Get number of files of the same file
