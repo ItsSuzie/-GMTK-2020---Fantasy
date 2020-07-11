@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
 
     private bool isActive;
 
-    public float spawnRate;
+    [HideInInspector] public float spawnRate;
     private float SpawnRateTimer = 0;
 
     [SerializeField] private Enemy enemyType;
@@ -37,14 +37,14 @@ public class EnemySpawner : MonoBehaviour
             {
                 int numOfEnemies = (enemiesPerPoint - enemyRandomness > 0) ? enemiesPerPoint + Random.Range(enemyRandomness, -enemyRandomness) : enemiesPerPoint + Random.Range(0, enemyRandomness); //im sorry eveyrone hates ternery but this looks pretty cleann
                 
-                if (SpawnRateTimer <= 0)
+                // if (SpawnRateTimer <= 0)
+                // {
+                for (int enemy = 1; enemy < numOfEnemies; enemy++)
                 {
-                    for (int enemy = 1; enemy < numOfEnemies; enemy++)
-                    {
-                        Instantiate(enemyType, new Vector2(spawnPoint.transform.position.x + Random.Range(spawnArea, -spawnArea), spawnPoint.transform.position.y + Random.Range(spawnArea, -spawnArea)), Quaternion.identity);
-                    }
-                    SpawnRateTimer = spawnRate;
+                    Instantiate(enemyType, new Vector2(spawnPoint.transform.position.x + Random.Range(spawnArea, -spawnArea), spawnPoint.transform.position.y + Random.Range(spawnArea, -spawnArea)), Quaternion.identity);
                 }
+                SpawnRateTimer = spawnRate;
+                // }
             }
             isActive = false;
         }
@@ -53,16 +53,19 @@ public class EnemySpawner : MonoBehaviour
             isActive = true;
         }
 
+        Debug.Log("Total Number of Enemies: " + totalNumberOfEnemies.ToString() + " || enemyType.enemyCount: " + enemyType.enemyCount.ToString());
 
 
-        if(SpawnRateTimer > 0)
-        {
-            SpawnRateTimer -= Time.deltaTime;
-            // if (SpawnRateTimer <= 0)
-            // {
-            //     SpawnRateTimer = spawnRate;
-            // }
-        }
+        // Might look into this later
+
+        // if(SpawnRateTimer > 0)
+        // {
+        //     SpawnRateTimer -= Time.deltaTime;
+        //     // if (SpawnRateTimer <= 0)
+        //     // {
+        //     //     SpawnRateTimer = spawnRate;
+        //     // }
+        // }
 
     }
 }
