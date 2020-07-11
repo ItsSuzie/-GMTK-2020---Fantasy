@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     public int HP;
     private int maxHP;
+    [Range(0, 1)] public float hpLossMultiplier = 0.25f;
     public Transform player;
     public float speed = 2f;
     private float playerDistance;
@@ -49,12 +48,14 @@ public class Enemy : MonoBehaviour
 
 
         // Check if the file of this enemy exists. If it doesnt, decrease the enmy health by a ton
-        if(!iOManager.isFileExists(transform.name) && fileFound)
+        if(fileFound)
         {
-            fileFound = false;
-            HP = (int)(maxHP * 0.25f);
+            if (!iOManager.isFileExists(transform.name))
+            {
+                fileFound = false;
+                HP = (int)(maxHP * hpLossMultiplier);
+            }
         }
-
     }
 
     public void TakeDamage()

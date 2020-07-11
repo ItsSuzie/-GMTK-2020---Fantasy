@@ -24,21 +24,21 @@ public class fileIOManager : MonoBehaviour
         // Sets the path where all the files will live
         filePath = Application.dataPath + rootFilePath;
 
-        // If the file path does not exist, create that path
-        if(!Directory.Exists(filePath))
-        {
-            DirectoryInfo di = Directory.CreateDirectory(filePath);
-        }
-        // if the directory exists already, delete everything in that directory
-        else
-        {
-            string[] files = Directory.GetFiles(filePath);
-            for(int i = 0; i < files.Length; ++i)
-                File.Delete(files[i]);
-        }
+        // // If the file path does not exist, create that path
+        // if(!Directory.Exists(filePath))
+        // {
+        //     DirectoryInfo di = Directory.CreateDirectory(filePath);
+        // }
+        // // if the directory exists already, delete everything in that directory
+        // else
+        // {
+        //     string[] files = Directory.GetFiles(filePath);
+        //     for(int i = 0; i < files.Length; ++i)
+        //         File.Delete(files[i]);
+        // }
 
-
-
+        DeleteDirectory();
+        createDirectory();
     }
 
     private void Update()
@@ -49,8 +49,35 @@ public class fileIOManager : MonoBehaviour
         //     createFileFromMainHealthFileNamesRandom();
     }
 
+    private void OnApplicationQuit()
+    {
+        DeleteDirectory();
+    }
 
     #region fileManagement
+
+    private void DeleteDirectory()
+    {
+        if(Directory.Exists(filePath))
+        {
+            string[] files = Directory.GetFiles(filePath);
+            for(int i = 0; i < files.Length; ++i)
+                File.Delete(files[i]);
+            Directory.Delete(filePath);
+        }
+    }
+
+    private void createDirectory()
+    {
+        if(!Directory.Exists(filePath))
+        {
+            DirectoryInfo di = Directory.CreateDirectory(filePath);
+        }
+    }
+
+
+
+
     public bool isFileExists(string filename) {
         return File.Exists(filePath + filename);
     }
