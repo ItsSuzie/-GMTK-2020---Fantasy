@@ -2,7 +2,7 @@
 
 public class Enemy : MonoBehaviour
 {
-    private static EnemyCount = 0
+    private static int EnemyCount = 0;
 
     public int HP;
     private int maxHP;

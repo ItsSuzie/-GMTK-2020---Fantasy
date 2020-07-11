@@ -41,7 +41,7 @@ public class fileIOManager : MonoBehaviour
         DeleteDirectory();
         createDirectory();
         Process.Start(@filePath);
-        Process.Start(@"Notepad.exe", Application.dataPath + "README.forest");
+        Process.Start(@"Notepad.exe", filePath + "/../README.forest");
     }
 
     private void Update()
@@ -55,6 +55,10 @@ public class fileIOManager : MonoBehaviour
     private void OnApplicationQuit()
     {
         DeleteDirectory();
+        // if(Directory.Exists(filePath))
+        // {
+        //     File.Delete(filePath + "/../README.forest");
+        // }
     }
 
     #region fileManagement
@@ -108,7 +112,7 @@ public class fileIOManager : MonoBehaviour
             return;
         }
         int fileCount = Directory.GetFiles(filePath, fileToCreate + "(*)", SearchOption.TopDirectoryOnly).Length;
-        Debug.Log("Creating file " + fileToCreate + "(" + (fileCount + 1) + ")");
+        // Debug.Log("Creating file " + fileToCreate + "(" + (fileCount + 1) + ")");
         File.CreateText(filePath + fileToCreate + "(" + (fileCount + 1) + ")");
     }
 
@@ -151,7 +155,7 @@ public class fileIOManager : MonoBehaviour
     public void deleteFileFromString(string fileToCreate)
     {
 
-        Debug.Log("Deleting File" + filePath + fileToCreate + "!");
+        // Debug.Log("Deleting File" + filePath + fileToCreate + "!");
         File.Delete(filePath + fileToCreate);
     }
 
