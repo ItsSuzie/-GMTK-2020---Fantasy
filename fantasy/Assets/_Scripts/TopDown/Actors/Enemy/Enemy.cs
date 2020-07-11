@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private static int EnemyCount;
-
     public int HP;
+    private int maxHP;
+    [Range(0, 1)] public float hpLossMultiplier = 0.25f;
     public Transform player;
     public float speed = 2f;
     private float playerDistance;
@@ -15,6 +13,10 @@ public class Enemy : MonoBehaviour
     private BoxCollider2D boxCollider;
     private LayerMask Sword;
     private Rigidbody2D rb2d;
+    private fileIOManager iOManager;
+
+
+    private bool fileFound = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,8 +24,12 @@ public class Enemy : MonoBehaviour
         //get something player == something something get instance()
         boxCollider = GetComponent<BoxCollider2D>();
         rb2d = GetComponent<Rigidbody2D>();
-    
-        EnemyCount++;
+        iOManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<fileIOManager>();
+
+        maxHP = HP;
+
+        iOManager.CreateFileFromStringNoDuplicates(transform.name);
+        fileFound = true;
     }
 
     // Update is called once per frame
@@ -41,7 +47,15 @@ public class Enemy : MonoBehaviour
         }
 
 
-
+        // Check if the file of this enemy exists. If it doesnt, decrease the enmy health by a ton
+        if(fileFound)
+        {
+            if (!iOManager.isFileExists(transform.name))
+            {
+                fileFound = false;
+                HP = (int)(maxHP * hpLossMultiplier);
+            }
+        }
     }
 
     public void TakeDamage()
@@ -53,16 +67,9 @@ public class Enemy : MonoBehaviour
             die();
         }
     }
-
     public void die() {
-        EnemyCount--;   
-
+        // maybe stuff
+        
         Destroy(this.gameObject);
     }
-
-    public static int enemyCount 
-    {
-        get { return EnemyCount; }
-    }
-
 }
