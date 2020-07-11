@@ -1,18 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.IO;
 
 public class Pacifism : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private fileIOManager io;
+    [SerializeField] private PlayerCombatController playerCombat;
+
+    private void Start()
     {
-        
+        io = GetComponentInParent<fileIOManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        string[] files = Directory.GetFiles(io.Path, "Pacifism(*)");
+        if(files.Length > 0)
+        {
+            // Debug.Log("Player now pacifist");
+            playerCombat.debuffPacifist = true;
+        }
+        else if (files.Length == 0)
+        {
+            // Debug.Log("Player can fight");
+            playerCombat.debuffPacifist = false;
+        }
     }
 }
