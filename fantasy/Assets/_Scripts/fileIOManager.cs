@@ -19,7 +19,7 @@ public class fileIOManager : MonoBehaviour
     #endregion
 
 
-    private void Start()
+    private void Awake()
     {
         // Sets the path where all the files will live
         filePath = Application.dataPath + rootFilePath;
