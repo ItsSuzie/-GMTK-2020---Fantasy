@@ -1,18 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.IO;
 
 public class Earthquake : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
+{    
+    private fileIOManager io;
+    [SerializeField] private CamEarthquake camEQ;
+
+    private bool vertigoFound = false;
+
+    private void Start()
     {
-        
+        io = GetComponentInParent<fileIOManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        string[] files = Directory.GetFiles(io.Path, "EarthQuake(*)");
+        if(files.Length > 0)
+        {
+            camEQ.enabled = true;
+        }
+        else if (files.Length == 0)
+        {
+            camEQ.enabled = false;
+        }
     }
 }
