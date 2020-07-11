@@ -42,10 +42,10 @@ public class fileIOManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.J))
-            createFileFromDebuffListRandom();
-        if(Input.GetKeyDown(KeyCode.K))
-            createFileFromMainHealthFileNamesRandom();
+        // if(Input.GetKeyDown(KeyCode.J))
+        //     createFileFromDebuffListRandom();
+        // if(Input.GetKeyDown(KeyCode.K))
+        //     createFileFromMainHealthFileNamesRandom();
     }
 
 

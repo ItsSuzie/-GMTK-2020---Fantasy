@@ -45,7 +45,8 @@ public class PlayerCombatController : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
     }
 
-    private void Update() {
+    private void Update() 
+    {
     }
 
 
@@ -82,7 +83,7 @@ public class PlayerCombatController : MonoBehaviour
 
 
 
-      private void OnDrawGizmos()
+    private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.matrix = Matrix4x4.TRS((Vector2)this.transform.position + attackRect[lastFacingDir].center, this.transform.rotation, Vector3.one);
