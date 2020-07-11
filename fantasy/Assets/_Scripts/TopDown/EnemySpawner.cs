@@ -5,9 +5,9 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
 
-    private boolean isActive;
+    private bool isActive;
 
-    [SerializeField] private gameObject enemyType;
+    [SerializeField] private GameObject enemyType;
     [SerializeField] private float spawnArea;
 
     [SerializeField] private int enemiesPerPoint;
@@ -34,8 +34,8 @@ public class EnemySpawner : MonoBehaviour
 
                 for (int enemy = 1; enemy < numberOfEnemies; enemy++)
                 {
-                    Instantiate(enemyType, new Vector2(spawnPoint,position.x + Random.Range(spawnArea, -spawnArea,
-                                                        spawnPoint.position.y + Random.Random(spawnArea, -spawnArea)), Quaternion.identity));
+                    Instantiate(enemyType, new Vector2(spawnPoint.position.x + Random.Range(spawnArea, -spawnArea,
+                                                        spawnPoint.position.y + Random.Range(spawnArea, -spawnArea)), Quaternion.identity);
                 }
             }
             isActive = false;
