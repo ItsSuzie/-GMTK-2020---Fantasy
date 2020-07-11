@@ -17,7 +17,7 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    }
+    }   
 
     // Update is called once per frame
     void Update()
@@ -30,12 +30,12 @@ public class EnemySpawner : MonoBehaviour
 
             foreach (gameObject spawnPoint in enemySpawnPoints)
             {
-                numOfEnemies = (enemiesPerPoint - enemyRandomness == 0) ? enemiesPerPoint + enemyRandomness() : 0 //im sorry eveyrone hates ternery but this looks pretty cleann
+                numOfEnemies = (enemiesPerPoint - enemyRandomness == 0) ? enemiesPerPoint + enemyRandomness() : 0; //im sorry eveyrone hates ternery but this looks pretty cleann
 
                 for (int enemy = 1; enemy < numberOfEnemies; enemy++)
                 {
                     Instantiate(enemyType, new Vector2(spawnPoint,position.x + Random.Range(spawnArea, -spawnArea,
-                                                        spawnPoint.position.y + Random.Random(spawnArea, -spawnArea)), Quaternion.identity);
+                                                        spawnPoint.position.y + Random.Random(spawnArea, -spawnArea)), Quaternion.identity));
                 }
             }
             isActive = false;
