@@ -1213,6 +1213,11 @@ PrefabInstance:
       propertyPath: hitMask.m_Bits
       value: 1024
       objectReference: {fileID: 0}
+    - target: {fileID: 6232801468280799928, guid: 2c7a5431a5e7a7043b2041fbde7932f3,
+        type: 3}
+      propertyPath: IOManager
+      value: 
+      objectReference: {fileID: 8330437603592135342}
     - target: {fileID: 8980895286349140481, guid: 2c7a5431a5e7a7043b2041fbde7932f3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1282,6 +1287,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8980895286349140991, guid: 2c7a5431a5e7a7043b2041fbde7932f3,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8980895286349140991, guid: 2c7a5431a5e7a7043b2041fbde7932f3,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8980895286349140991, guid: 2c7a5431a5e7a7043b2041fbde7932f3,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c7a5431a5e7a7043b2041fbde7932f3, type: 3}

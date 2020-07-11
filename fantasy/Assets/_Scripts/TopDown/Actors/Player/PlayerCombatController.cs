@@ -14,6 +14,7 @@ public class PlayerCombatController : MonoBehaviour
     public LayerMask hitMask;
     [SerializeField] private int lastFacingDir;
     [SerializeField] private int numberOfLives;
+    private int numLivesMax;
 
     private Vector2 rayOrigin;
 
@@ -25,7 +26,7 @@ public class PlayerCombatController : MonoBehaviour
     
     // private PlayerAttributesController playerAttributes;
 
-    private fileIOManager IOManager;
+    [SerializeField] private fileIOManager IOManager;
 
 
     // Debuff Variables
@@ -49,7 +50,7 @@ public class PlayerCombatController : MonoBehaviour
         // Defines the component references
         inputManager = GetComponent<PlayerInputManager>();
         playerMovement = GetComponent<PlayerMovement>();
-        IOManager = GetComponent<fileIOManager>();
+        numLivesMax = numberOfLives;
 
         UpdateLives();
     }
@@ -92,16 +93,16 @@ public class PlayerCombatController : MonoBehaviour
     }
 
     public void UpdateLives() {
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < numLivesMax; i++) {
             Debug.Log("Loop Iteration: " + i);
 
             if (IOManager.isFileExists(IOManager.mainHealthFileNames[i])) { //if file exists
                 if (i > numberOfLives) { //and it belongs to a life that you dont have
                     IOManager.deleteFileFromString(IOManager.mainHealthFileNames[i]); // yeet it
                 }
+            }
             else if (i < numberOfLives) { //if it doesnt exist and we actually need it
                 IOManager.createFileFromString("Health"); //create it 
-                }
             }
         }
     }
