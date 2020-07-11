@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Player Movement Values")]
     public float moveSpeed = 5f;                    // How fast the player will move
     public float sprintSpeed = 10f;                 // How fast the player will sprint
+    private float temptMoveSpeed;
+    private float TempSprintSpeed;
     [SerializeField] private PLAYER_FACING_DIRECTION facingDirection; // Stores the current facing direction
     // Private variables
     // ---------------------------------------------
@@ -31,6 +33,12 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb2d;                   // Reference to the player rigidbody component   
     //private PlayerTetherController _tether;     // Gets the tether controller reference
     [SerializeField] private Animator anim;     // Reference to child animator
+
+
+
+    // Debuff values
+    private bool D_BrainFreeze = false;
+    private float D_BFSpeedDecreaseMultiplier;
 
     #endregion
 
@@ -91,6 +99,15 @@ public class PlayerMovement : MonoBehaviour
         // Move player position based on the current player position + the direction the player is moving,
         // Then multiply that by the speed the player will move, and then multiplay that by deltaTime to ensure
         // it's moving at realtime
+        temptMoveSpeed = moveSpeed;
+        TempSprintSpeed = sprintSpeed;
+
+        // Debuffs
+        if(D_BrainFreeze)
+        {
+            temptMoveSpeed *= D_BFSpeedDecreaseMultiplier;
+            TempSprintSpeed *= D_BFSpeedDecreaseMultiplier;
+        }
 
         
 
@@ -127,14 +144,13 @@ public class PlayerMovement : MonoBehaviour
         // Defines movement - normal speed vs sprinting
         if (!isSprinting)
         {
-            tempMove = rb2d.position + moveDirection * moveSpeed * Time.fixedDeltaTime;
+            tempMove = rb2d.position + moveDirection * temptMoveSpeed * Time.fixedDeltaTime;
         }
         else
         {
-            tempMove = rb2d.position + moveDirection * sprintSpeed * Time.fixedDeltaTime;
+            tempMove = rb2d.position + moveDirection * TempSprintSpeed * Time.fixedDeltaTime;
         }
 
-        
         // Move the player
         if (moveDirection != Vector2.zero)// && movementAllowed(ref tempMove))
         {
@@ -158,6 +174,13 @@ public class PlayerMovement : MonoBehaviour
     public int FacingDirection
     {
         get { return (int)facingDirection; }
+    }
+
+
+    public void SetBrainFreeze(bool BFVal, float speedDec)
+    {
+        D_BrainFreeze = BFVal; 
+        D_BFSpeedDecreaseMultiplier = speedDec; 
     }
 
     #endregion
