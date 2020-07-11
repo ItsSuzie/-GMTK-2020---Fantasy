@@ -35,8 +35,9 @@ public class EnemySpawner : MonoBehaviour
 
             foreach (GameObject spawnPoint in enemySpawnPoints)
             {
-                int numOfEnemies = (enemiesPerPoint - enemyRandomness > 0) ? enemiesPerPoint + Random.Range(enemyRandomness, -enemyRandomness) : 0; //im sorry eveyrone hates ternery but this looks pretty cleann
-                if (SpawnRateTimer < 0)
+                int numOfEnemies = (enemiesPerPoint - enemyRandomness > 0) ? enemiesPerPoint + Random.Range(enemyRandomness, -enemyRandomness) : enemiesPerPoint + Random.Range(0, enemyRandomness); //im sorry eveyrone hates ternery but this looks pretty cleann
+                
+                if (SpawnRateTimer <= 0)
                 {
                     for (int enemy = 1; enemy < numOfEnemies; enemy++)
                     {
