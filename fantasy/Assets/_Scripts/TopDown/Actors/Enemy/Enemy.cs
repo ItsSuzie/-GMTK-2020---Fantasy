@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    private static int EnemyCount;
+
     public int HP;
     public Transform player;
     public float speed = 2f;
@@ -20,6 +22,8 @@ public class Enemy : MonoBehaviour
         //get something player == something something get instance()
         boxCollider = GetComponent<BoxCollider2D>();
         rb2d = GetComponent<Rigidbody2D>();
+    
+        EnemyCount++;
     }
 
     // Update is called once per frame
@@ -49,9 +53,16 @@ public class Enemy : MonoBehaviour
             die();
         }
     }
+
     public void die() {
-        // maybe stuff
-        
+        EnemyCount--;   
+
         Destroy(this.gameObject);
     }
+
+    public static int enemyCount 
+    {
+        get { return EnemyCount; }
+    }
+
 }
