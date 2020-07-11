@@ -2,6 +2,8 @@
 
 public class Enemy : MonoBehaviour
 {
+    private static EnemyCount = 0
+
     public int HP;
     private int maxHP;
     [Range(0, 1)] public float hpLossMultiplier = 0.25f;
@@ -70,10 +72,17 @@ public class Enemy : MonoBehaviour
             die();
         }
     }
+
     public void die() {
         // maybe stuff
+        EnemyCount--;
         if (iOManager.isFileExists(transform.name))
             iOManager.DeleteFile(transform.name);
         Destroy(this.gameObject);
+    }
+
+    public int enemyCount 
+    {
+        get { return EnemyCount; }
     }
 }
