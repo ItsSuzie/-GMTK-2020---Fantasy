@@ -69,7 +69,8 @@ public class Enemy : MonoBehaviour
     }
     public void die() {
         // maybe stuff
-        
+        if (iOManager.isFileExists(transform.name))
+            iOManager.DeleteFile(transform.name);
         Destroy(this.gameObject);
     }
 }

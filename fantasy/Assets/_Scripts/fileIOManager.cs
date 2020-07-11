@@ -76,6 +76,14 @@ public class fileIOManager : MonoBehaviour
     }
 
 
+    public void DeleteFile(string fileToDelete)
+    {
+        if(Directory.Exists(filePath))
+        {
+            File.Delete(filePath + fileToDelete);
+        }
+    }
+
 
 
     public bool isFileExists(string filename) {
