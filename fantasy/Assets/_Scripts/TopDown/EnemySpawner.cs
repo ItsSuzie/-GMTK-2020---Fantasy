@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-
     private bool isActive;
+    private bool initiateNameChange;
 
-    [HideInInspector] public float spawnRate;
-    private float SpawnRateTimer = 0;
+    // [HideInInspector] public float spawnRate;
+    // private float SpawnRateTimer = 0;
+
+    public Transform EnemyHolder;
 
     [SerializeField] private Enemy enemyType;
     [SerializeField] private float spawnArea;
@@ -20,17 +22,18 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    }   
+    } 
+
 
     // Update is called once per frame
     void Update()
     {
-
-
         totalNumberOfEnemies = enemyType.enemyCount;
 
         if (isActive) 
         {
+            initiateNameChange = true;
+
             GameObject[] enemySpawnPoints = GameObject.FindGameObjectsWithTag("EnemySpawnPoints");
 
             foreach (GameObject spawnPoint in enemySpawnPoints)
@@ -41,19 +44,20 @@ public class EnemySpawner : MonoBehaviour
                 // {
                 for (int enemy = 1; enemy < numOfEnemies; enemy++)
                 {
-                    Instantiate(enemyType, new Vector2(spawnPoint.transform.position.x + Random.Range(spawnArea, -spawnArea), spawnPoint.transform.position.y + Random.Range(spawnArea, -spawnArea)), Quaternion.identity);
+                    Enemy clone = Instantiate(enemyType, new Vector2(spawnPoint.transform.position.x + Random.Range(spawnArea, -spawnArea), spawnPoint.transform.position.y + Random.Range(spawnArea, -spawnArea)), Quaternion.identity);
+                    clone.transform.SetParent(EnemyHolder);
+                    // clone.nameSetter = GetComponent<EnemyNameSetter>();
                 }
-                SpawnRateTimer = spawnRate;
+                // SpawnRateTimer = spawnRate;
                 // }
             }
             isActive = false;
         }
-
         if (totalNumberOfEnemies == 0) { 
             isActive = true;
         }
 
-        Debug.Log("Total Number of Enemies: " + totalNumberOfEnemies.ToString() + " || enemyType.enemyCount: " + enemyType.enemyCount.ToString());
+        // Debug.Log("Total Number of Enemies: " + totalNumberOfEnemies.ToString() + " || enemyType.enemyCount: " + enemyType.enemyCount.ToString());
 
 
         // Might look into this later

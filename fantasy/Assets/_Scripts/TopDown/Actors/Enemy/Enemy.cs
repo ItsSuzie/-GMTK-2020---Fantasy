@@ -4,6 +4,8 @@ public class Enemy : MonoBehaviour
 {
     private static int EnemyCount = 0;
 
+    public EnemyNameSetter nameSetter;
+
     public int HP;
     private int maxHP;
     [Range(0, 1)] public float hpLossMultiplier = 0.25f;
@@ -23,7 +25,8 @@ public class Enemy : MonoBehaviour
     void Awake()
     {
         EnemyCount++;
-        Debug.Log(enemyCount.ToString());
+        // Debug.Log(enemyCount.ToString());
+        iOManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<fileIOManager>();
     }
 
     // Start is called before the first frame update
@@ -33,14 +36,19 @@ public class Enemy : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         rb2d = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        iOManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<fileIOManager>();
 
         maxHP = HP;
 
+        nameSetter = transform.GetComponentInParent<EnemyNameSetter>();
+        transform.name = nameSetter.getNameForObject();
+        createEnemyFile();
+    }
+
+    // Gets called from instantiation
+    public void createEnemyFile()
+    {
         iOManager.CreateFileFromStringNoDuplicates(transform.name);
         fileFound = true;
-
-
     }
 
     // Update is called once per frame

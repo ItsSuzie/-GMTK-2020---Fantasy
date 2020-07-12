@@ -121,6 +121,131 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &167342355
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 167342356}
+  - component: {fileID: 167342358}
+  - component: {fileID: 167342357}
+  m_Layer: 0
+  m_Name: EnemyHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &167342356
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167342355}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1601684785}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &167342357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167342355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c57accf23b4010488b88994393e249a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  namesForEnemies:
+  - Arachna
+  - Boris
+  - Blair
+  - Beelzebub
+  - Banshee
+  - boo
+  - Buffy
+  - Casper
+  - Chaos
+  - Cruella
+  - Crimson
+  - Dracula
+  - Elvira
+  - Endora
+  - Fang
+  - Hades
+  - Hecate
+  - Herman
+  - Hilda
+  - Lucifer
+  - Maleficent
+  - Merlin
+  - Nosferatu
+  - Nyx
+  - Raven
+  - Pegan
+  - Ripper
+  - Sabrina
+  - Scareface
+  - Skull
+  EnemyHolder: {fileID: 167342356}
+  enemyType: {fileID: 3019630497858589472, guid: 3a3178d76c442b341af86c68b818cab5,
+    type: 3}
+  spawnArea: 0
+  enemiesPerPoint: 1
+  enemyRandomness: 2
+  totalNumberOfEnemies: 5
+--- !u!114 &167342358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167342355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6f05c5074c6f604daceef521f9a1be0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  namesForEnemies:
+  - Arachna
+  - Boris
+  - Blair
+  - Beelzebub
+  - Bansee
+  - Boo
+  - Buffy
+  - Casper
+  - Chaos
+  - Cruella
+  - Crimson
+  - Dracula
+  - Elvira
+  - Endora
+  - Fang
+  - Hades
+  - Hecate
+  - Herman
+  - Hilda
+  - Lucifer
+  - Maleficent
+  - Merlin
+  - Nosferatu
+  - Nyx
+  - Raven
+  - Pegan
+  - Ripper
+  - Sabrina
+  - Scarface
+  - Skull
 --- !u!1 &663430786
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +274,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1601684785}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &783502658
 GameObject:
@@ -179,7 +304,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1601684785}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &903096141
 GameObject:
@@ -333,10 +458,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 167342356}
   - {fileID: 783502659}
-  - {fileID: 663430787}
   - {fileID: 1944136813}
   - {fileID: 1063734922}
+  - {fileID: 663430787}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -352,7 +478,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c57accf23b4010488b88994393e249a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 0
+  namesForEnemies:
+  - Arachna
+  - Boris
+  - Blair
+  - Beelzebub
+  - Banshee
+  - boo
+  - Buffy
+  - Casper
+  - Chaos
+  - Cruella
+  - Crimson
+  - Dracula
+  - Elvira
+  - Endora
+  - Fang
+  - Hades
+  - Hecate
+  - Herman
+  - Hilda
+  - Lucifer
+  - Maleficent
+  - Merlin
+  - Nosferatu
+  - Nyx
+  - Raven
+  - Pegan
+  - Ripper
+  - Sabrina
+  - Scareface
+  - Skull
+  EnemyHolder: {fileID: 167342356}
   enemyType: {fileID: 3019630497858589472, guid: 3a3178d76c442b341af86c68b818cab5,
     type: 3}
   spawnArea: 0
