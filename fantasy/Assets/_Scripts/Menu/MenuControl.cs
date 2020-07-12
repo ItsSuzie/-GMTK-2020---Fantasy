@@ -18,7 +18,7 @@ public class MenuControl : MonoBehaviour
     {
         fileIOManager io = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<fileIOManager>();
         io.DeleteDirectory();
-        Invoke("loadForest", 1);
+        loadForest();
     }
 }
 
