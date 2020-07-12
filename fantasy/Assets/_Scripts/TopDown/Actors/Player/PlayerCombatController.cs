@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.IO;
 
 public class PlayerCombatController : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PlayerCombatController : MonoBehaviour
     public LayerMask hitMask;
     public float invulerabilityTimer = 2;
     private float invulerabilityTimerCountdown;
+    public GameObject GameOver;
 
     [SerializeField] private int lastFacingDir;
     [SerializeField] private int numberOfLives;
@@ -154,6 +156,22 @@ public class PlayerCombatController : MonoBehaviour
         {
             invulerabilityTimerCountdown -= Time.deltaTime;
         }
+
+
+        // Check for file updates
+        string[] files = Directory.GetFiles(IOManager.Path, "Health(*)");
+
+        // If file has been deleted manually, update current lives and give debuff
+        if(numberOfLives != files.Length)
+        {
+            numberOfLives = files.Length;
+            IOManager.createFileFromDebuffListRandom();
+        }
+
+        if(numberOfLives == 0 || files.Length == 0)
+        {
+            Die();
+        }
     }
 
 
@@ -163,8 +181,16 @@ public class PlayerCombatController : MonoBehaviour
         UpdateLives(true);
 
         if (numberOfLives == 0) {
-            //TODO do game over stuff
+            Die();
         }
+    }
+
+    private void Die()
+    {       
+        //TODO do game over stuff
+        GameOver.SetActive(true);
+        // Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
 

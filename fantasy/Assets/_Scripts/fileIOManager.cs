@@ -58,7 +58,7 @@ public class fileIOManager : MonoBehaviour
             sw.WriteLine("");
 
         }
-        Process.Start(@"Notepad.exe", filePath + "/README.forest");
+        // Process.Start(@"Notepad.exe", filePath + "/README.forest");
     }
 
     private void OnApplicationQuit()
@@ -68,7 +68,7 @@ public class fileIOManager : MonoBehaviour
 
     #region fileManagement
 
-    private void DeleteDirectory()
+    public void DeleteDirectory()
     {
         if(Directory.Exists(filePath))
         {

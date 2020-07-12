@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
 
-    private bool isActive;
+    private bool isActive = true;
 
     [HideInInspector] public float spawnRate;
     private float SpawnRateTimer = 0;
