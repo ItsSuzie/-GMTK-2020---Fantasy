@@ -16,6 +16,8 @@ public class PlayerCombatController : MonoBehaviour
     public float invulerabilityTimer = 2;
     private float invulerabilityTimerCountdown;
     public GameObject GameOver;
+    public AudioClip swordSlice;
+    public AudioClip playerGotHit;
 
     [SerializeField] private int lastFacingDir;
     [SerializeField] private int numberOfLives;
@@ -31,6 +33,7 @@ public class PlayerCombatController : MonoBehaviour
     private PlayerMovement playerMovement;
     private BoxCollider2D box2d;
     private Animator anim;
+    private AudioSource audioSource;
     // private PlayerAttributesController playerAttributes;
 
     [SerializeField] private fileIOManager IOManager;
@@ -60,6 +63,7 @@ public class PlayerCombatController : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         box2d = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         numLivesMax = numberOfLives;
 
         UpdateLives(false);
@@ -84,6 +88,7 @@ public class PlayerCombatController : MonoBehaviour
         {
             // activate attack anim
             anim.SetTrigger("isAttacking");
+            audioSource.PlayOneShot(swordSlice);
 
             // Debug.Log("Attacking");
             if (attackDirection == PlayerMovement.PLAYER_FACING_DIRECTION.UP) {
@@ -152,6 +157,7 @@ public class PlayerCombatController : MonoBehaviour
             {
                 // reset timer;
                 Debug.Log("hit by enemy");
+                audioSource.PlayOneShot(playerGotHit);
                 invulerabilityTimerCountdown = invulerabilityTimer;
                 Hit();
             }
