@@ -69,7 +69,9 @@ public class fileIOManager : MonoBehaviour
     }
 
     private void Update() {
-        files = Directory.GetFiles(filePath);
+        if (Directory.Exists(filePath)) {
+            files = Directory.GetFiles(filePath);
+        }
     }
 
     private void OnApplicationQuit()
