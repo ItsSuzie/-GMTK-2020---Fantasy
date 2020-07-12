@@ -8,5 +8,17 @@ public class MenuControl : MonoBehaviour
     {
         SceneManager.LoadScene("Forest");
     }
+
+    public void loadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void reloadForest()
+    {
+        fileIOManager io = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<fileIOManager>();
+        io.DeleteDirectory();
+        Invoke("loadForest", 1);
+    }
 }
 

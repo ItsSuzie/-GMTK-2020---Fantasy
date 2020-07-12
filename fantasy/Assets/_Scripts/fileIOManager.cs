@@ -68,7 +68,7 @@ public class fileIOManager : MonoBehaviour
 
     #region fileManagement
 
-    private void DeleteDirectory()
+    public void DeleteDirectory()
     {
         if(Directory.Exists(filePath))
         {
