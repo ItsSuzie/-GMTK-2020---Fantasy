@@ -3,11 +3,13 @@
 public class CamEarthquake : MonoBehaviour
 {
     public float magnitude;
+    public float magnitudeOriginal;
     private Vector3 originalPos = Vector3.zero;
 
     private void Start()
     {
         originalPos = Vector3.zero;
+        magnitudeOriginal = magnitude;
     }
 
     private void Update()
