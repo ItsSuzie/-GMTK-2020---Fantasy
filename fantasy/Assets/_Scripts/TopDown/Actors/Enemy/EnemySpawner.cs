@@ -21,9 +21,14 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float setpointDelay;
     [SerializeField]
 
+    public float spawnTime;
+    private float spawnTimer;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        ResetSpawnTimer();
     }   
 
     // Update is called once per frame
@@ -32,10 +37,13 @@ public class EnemySpawner : MonoBehaviour
 
 
         totalNumberOfEnemies = enemyType.enemyCount;
+        spawnTimer -= Time.deltaTime;
 
-        if (isActive) 
+
+        if (isActive & spawnTimer <= 0.0f) 
         {
             GameObject[] enemySpawnPoints = GameObject.FindGameObjectsWithTag("EnemySpawnPoints");
+            ResetSpawnTimer();
 
             for (int enemy = 0; enemy < numberOfEnemies; enemy++)
             {
@@ -66,5 +74,10 @@ public class EnemySpawner : MonoBehaviour
         //     // }
         // }
 
+    }
+
+    void ResetSpawnTimer()
+    {
+        spawnTimer = spawnTime;
     }
 }
