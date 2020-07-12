@@ -1871,7 +1871,7 @@ MonoBehaviour:
     type: 3}
   enemyHolder: {fileID: 1400282272}
   spawnArea: 1
-  numberOfEnemies: 21
+  numberOfEnemies: 1
   enemyRandomness: 2
   setpointDelay: 0
 --- !u!4 &1894218263

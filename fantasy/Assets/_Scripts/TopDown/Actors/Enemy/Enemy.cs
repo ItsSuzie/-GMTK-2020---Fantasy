@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     public float speed = 2f;
     private float playerDistance;
     public float minDistance = 1f;
+    public float angle;
     public AudioClip enemyGotHit;
 
     private BoxCollider2D boxCollider;
@@ -20,6 +21,7 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rb2d;
     private fileIOManager iOManager;
     private AudioSource audioSource;
+    private Animator anim;
 
 
     private bool fileFound = false;
@@ -38,6 +40,7 @@ public class Enemy : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        anim = GetComponent<Animator>();
 
         maxHP = HP;
 
@@ -58,12 +61,13 @@ public class Enemy : MonoBehaviour
     {
 
         //simply move towards player,  like a ghost maybe
-        float rot_z = Mathf.Atan2(player.transform.position.y, player.transform.position.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
-        playerDistance = Vector2.Distance(transform.position, player.position);
+        // rot_z = (Mathf.Atan2(player.transform.position.y, player.transform.position.x) * Mathf.Rad2Deg) - 90;
+        // transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
 
-        
+        playerDistance = Vector2.Distance(transform.position, player.position);
         rb2d.MovePosition(Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime));
+        angle = Vector2.Angle(transform.position, player.position);
+
         
 
 
