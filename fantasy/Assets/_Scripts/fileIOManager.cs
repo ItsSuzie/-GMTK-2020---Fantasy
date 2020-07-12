@@ -14,6 +14,8 @@ public class fileIOManager : MonoBehaviour
 
     public List<string> mainHealthFileNames = new List<string> {"Health(1)", "Health(2)", "Health(3)"};    
 
+    public List<string> audioGlitchFiles = new List<string> {"Glitch(1)", "Glitch(2)"};
+
     private string[] files;
 
     public string rootFilePath;     // The file path root directory where the files will be stored

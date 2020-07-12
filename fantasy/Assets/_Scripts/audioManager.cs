@@ -9,15 +9,37 @@ public class audioManager : MonoBehaviour
 
     private float bgMusicCurrentTime;
     private AudioSource audioSource;
+    private fileIOManager IOmanager;
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        IOmanager = GetComponent<fileIOManager>();
 
         // play bg music
         audioSource.clip = backgroundMusic;
         audioSource.Play();
         audioSource.loop = true;
+
+        IOmanager.createFileFromString("Glitch");
+    }
+
+    private void Update() {
+        if (IOmanager.isFileExists(IOmanager.audioGlitchFiles[0])) {
+            if (audioSource.pitch != 5)
+            {
+                audioSource.pitch = audioSource.pitch < 5 ? Time.deltaTime * audioSource.pitch / 5f : -(Time.deltaTime * audioSource.pitch / 5f);
+            }
+        }
+        else if (IOmanager.isFileExists(IOmanager.audioGlitchFiles[1])) {
+            if (audioSource.pitch != .5)
+            {
+                audioSource.pitch = audioSource.pitch < .5 ? Time.deltaTime * audioSource.pitch / 5f : -(Time.deltaTime * audioSource.pitch / 5f);
+            }
+        }
+        else {
+            audioSource.pitch = 0;
+        }
     }
 
     public void playGlitchyClip(int index)
