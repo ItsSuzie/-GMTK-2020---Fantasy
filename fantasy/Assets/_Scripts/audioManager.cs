@@ -25,21 +25,22 @@ public class audioManager : MonoBehaviour
     }
 
     private void Update() {
-        if (IOmanager.isFileExists(IOmanager.audioGlitchFiles[0])) {
-            if (audioSource.pitch != 5)
-            {
-                audioSource.pitch = audioSource.pitch < 5 ? Time.deltaTime * audioSource.pitch / 5f : -(Time.deltaTime * audioSource.pitch / 5f);
-            }
-        }
-        else if (IOmanager.isFileExists(IOmanager.audioGlitchFiles[1])) {
-            if (audioSource.pitch != .5)
-            {
-                audioSource.pitch = audioSource.pitch < .5 ? Time.deltaTime * audioSource.pitch / 5f : -(Time.deltaTime * audioSource.pitch / 5f);
-            }
-        }
-        else {
-            audioSource.pitch = 0;
-        }
+
+        // if (IOmanager.isFileExists(IOmanager.audioGlitchFiles[0])) {
+        //     if (audioSource.pitch != 5)
+        //     {
+        //         audioSource.pitch = audioSource.pitch < 5 ? Time.deltaTime * audioSource.pitch / 5f : -(Time.deltaTime * audioSource.pitch / 5f);
+        //     }
+        // }
+        // else if (IOmanager.isFileExists(IOmanager.audioGlitchFiles[1])) {
+        //     if (audioSource.pitch != .5)
+        //     {
+        //         audioSource.pitch = audioSource.pitch < .5 ? Time.deltaTime * audioSource.pitch / 5f : -(Time.deltaTime * audioSource.pitch / 5f);
+        //     }
+        // }
+        // else {
+        //     audioSource.pitch = 0;
+        // }
     }
 
     public void playGlitchyClip(int index)

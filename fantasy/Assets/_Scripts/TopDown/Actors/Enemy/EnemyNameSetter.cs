@@ -53,7 +53,7 @@ public class EnemyNameSetter : MonoBehaviour
             }
 
                 // Change object name
-                string newName = "flurple " + enemyNames.Peek();
+                string newName = enemyNames.Peek() + " flurple";
                 enemyNamesRefill.Push(enemyNames.Peek());
                 enemyNames.Pop();
 
