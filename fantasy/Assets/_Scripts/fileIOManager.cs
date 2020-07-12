@@ -14,6 +14,8 @@ public class fileIOManager : MonoBehaviour
 
     public List<string> mainHealthFileNames = new List<string> {"Health(1)", "Health(2)", "Health(3)"};    
 
+    private string[] files;
+
     public string rootFilePath;     // The file path root directory where the files will be stored
     private string filePath;        // the whole file path
     private audioManager audioManager;
@@ -64,6 +66,10 @@ public class fileIOManager : MonoBehaviour
         Process.Start(@"Notepad.exe", filePath + "/README.forest");
     }
 
+    private void Update() {
+        files = Directory.GetFiles(filePath);
+    }
+
     private void OnApplicationQuit()
     {
         DeleteDirectory();
@@ -103,7 +109,7 @@ public class fileIOManager : MonoBehaviour
     }
 
     public bool isFileExists(string filename) {
-        return File.Exists(filePath + filename);
+        return Array.Exists(files, name => name == filename);
     }
 
     /// Create file assuming the file will not have duplicates.

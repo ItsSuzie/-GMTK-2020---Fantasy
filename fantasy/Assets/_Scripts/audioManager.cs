@@ -6,6 +6,7 @@ public class audioManager : MonoBehaviour
 {
     public AudioClip[] glitchyClips;
     public AudioClip backgroundMusic;
+
     private float bgMusicCurrentTime;
     private AudioSource audioSource;
 
@@ -41,8 +42,14 @@ public class audioManager : MonoBehaviour
         audioSource.Play();
     }
 
-    // todo: when files exist, do speicific things to the music
-    // like reverse controlles, wobble the pitch
-
+    public float pitch 
+    {
+        set {audioSource.pitch = value;}
+    }
+    
+    public float dopplerLevel
+    {
+        set {audioSource.dopplerLevel = value;}
+    }
 
 }
