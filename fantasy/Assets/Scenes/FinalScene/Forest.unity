@@ -634,11 +634,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 595834686653237922, guid: a0da5a2111d0c5a439fc0bb4a5fc18a2,
-        type: 3}
-      propertyPath: glitchyClips.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8330437602973745649, guid: a0da5a2111d0c5a439fc0bb4a5fc18a2,
         type: 3}
       propertyPath: m_Name
@@ -1871,7 +1866,7 @@ MonoBehaviour:
     type: 3}
   enemyHolder: {fileID: 1400282272}
   spawnArea: 1
-  numberOfEnemies: 1
+  numberOfEnemies: 21
   enemyRandomness: 2
   setpointDelay: 0
 --- !u!4 &1894218263

@@ -1,7 +1,67 @@
 fileFormatVersion: 2
 guid: 9ec34195cf2c93d478555aa3e03732ac
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -3082366263539233030
+    second: Wander_right
+  - first:
+      213: -2424795152411251988
+    second: Wander_up
+  - first:
+      213: 3274003116909709470
+    second: Wander_left
+  - first:
+      213: 8403168673406074756
+    second: Wander_Down
+  - first:
+      213: 3254561069690717636
+    second: Wander_sprite_sheet_4
+  - first:
+      213: -6089034043962917785
+    second: Wander_sprite_sheet_5
+  - first:
+      213: 4419806406150625260
+    second: Wander_sprite_sheet_6
+  - first:
+      213: 5989437775063045806
+    second: Wander_sprite_sheet_7
+  - first:
+      213: 4023679833471961945
+    second: Wander_sprite_sheet_8
+  - first:
+      213: -799725656764428003
+    second: Wander_sprite_sheet_9
+  - first:
+      213: 295040065934416037
+    second: Wander_sprite_sheet_10
+  - first:
+      213: -6036716879582351926
+    second: Wander_sprite_sheet_11
+  - first:
+      213: 8167535810087069765
+    second: Wander_sprite_sheet_12
+  - first:
+      213: 6683440136532457319
+    second: Wander_sprite_sheet_13
+  - first:
+      213: 2687630708499828225
+    second: Wander_sprite_sheet_14
+  - first:
+      213: -4477821758096264618
+    second: Wander_sprite_sheet_15
+  - first:
+      213: 1461826961681208044
+    second: Wander_sprite_sheet_16
+  - first:
+      213: -8904753487520145243
+    second: Wander_sprite_sheet_17
+  - first:
+      213: 9123043156078470394
+    second: Wander_sprite_sheet_18
+  - first:
+      213: 8951629211744104680
+    second: Wander_sprite_sheet_19
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -45,7 +105,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 200
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -97,7 +157,91 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Wander_right
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 501
+        width: 252
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afe8812e63c3935d0800000000000000
+      internalID: -3082366263539233030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wander_up
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 486
+        width: 294
+        height: 517
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cea207fe7a5695ed0800000000000000
+      internalID: -2424795152411251988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wander_left
+      rect:
+        serializedVersion: 2
+        x: 1314
+        y: 539
+        width: 277
+        height: 529
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e98cce80d789f6d20800000000000000
+      internalID: 3274003116909709470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wander_Down
+      rect:
+        serializedVersion: 2
+        x: 1912
+        y: 605
+        width: 305
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48f3f06f26d0e9470800000000000000
+      internalID: 8403168673406074756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
