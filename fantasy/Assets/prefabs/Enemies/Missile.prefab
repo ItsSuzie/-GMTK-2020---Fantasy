@@ -13,11 +13,8 @@ GameObject:
   - component: {fileID: 3225353537979333710}
   - component: {fileID: 3225353537979334066}
   - component: {fileID: 3225353537979333709}
-  - component: {fileID: 3225353537979333704}
-  - component: {fileID: 3225353537979333707}
-  - component: {fileID: 3225353537979333706}
   - component: {fileID: 3225353537979333705}
-  - component: {fileID: 6352240863692566089}
+  - component: {fileID: 245842250067018606}
   m_Layer: 10
   m_Name: Missle
   m_TagString: Untagged
@@ -94,7 +91,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3225353537979333701}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -133,46 +130,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3225353537979333704
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3225353537979333701}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c82ec32b52a08348a1dd29320772b19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3225353537979333707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3225353537979333701}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d643d4a68e6c4e54086f3e893b25dd73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3225353537979333706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3225353537979333701}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13a494fde86b9ce4ca69fc490fa5dff5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  sprintSpeed: 10
-  facingDirection: 0
-  anim: {fileID: 0}
 --- !u!95 &3225353537979333705
 Animator:
   serializedVersion: 3
@@ -192,7 +149,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6352240863692566089
+--- !u!114 &245842250067018606
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -201,12 +158,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3225353537979333701}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be0342d2b4f2d0b4f8d906254f0420ba, type: 3}
+  m_Script: {fileID: 11500000, guid: eb6247a83a728634ca98c0dfccb1891d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   nameSetter: {fileID: 0}
   HP: 1
   hpLossMultiplier: 0.25
   player: {fileID: 0}
-  speed: 5
-  minDistance: 1
+  speed: 10
+  minDistance: 1000
