@@ -16,12 +16,15 @@ public class fileIOManager : MonoBehaviour
 
     public string rootFilePath;     // The file path root directory where the files will be stored
     private string filePath;        // the whole file path
+    private audioManager audioManager;
 
     #endregion
 
 
     private void Awake()
     {
+        audioManager = GetComponent<audioManager>();
+
         // Sets the path where all the files will live
         filePath = Application.dataPath + rootFilePath;
 
@@ -67,6 +70,10 @@ public class fileIOManager : MonoBehaviour
     }
 
     #region fileManagement
+    private int getRandInt(int min, int max)
+    {
+        return UnityEngine.Random.Range(min, max);
+    }
 
     public void DeleteDirectory()
     {
@@ -121,12 +128,15 @@ public class fileIOManager : MonoBehaviour
     public void createFileFromDebuffListRandom()
     {
         // Get random file
+        int randInt;
         string fileToCreate;
         do 
         {
-            fileToCreate = debuffFileNames[UnityEngine.Random.Range(0,debuffFileNames.Count)];
+            randInt = getRandInt(0, debuffFileNames.Count);
+            fileToCreate = debuffFileNames[randInt];
         }
         while(fileToCreate == "null");
+        audioManager.playGlitchyClip(randInt);
         createFileFromString(fileToCreate);
     }
 
@@ -134,15 +144,18 @@ public class fileIOManager : MonoBehaviour
     {
         // get file from index
         string fileToCreate = debuffFileNames[i];
+        audioManager.playGlitchyClip(i);
         createFileFromString(fileToCreate);
     }
 
     public void createFileFromMainHealthFileNamesRandom()
     {
+        int randInt;
         string fileToCreate;
         do
         {
-            fileToCreate = mainHealthFileNames[UnityEngine.Random.Range(0, mainHealthFileNames.Count)];
+            randInt = getRandInt(0, mainHealthFileNames.Count);
+            fileToCreate = mainHealthFileNames[randInt];
         }
         while(fileToCreate == "null");
         createFileFromString(fileToCreate);

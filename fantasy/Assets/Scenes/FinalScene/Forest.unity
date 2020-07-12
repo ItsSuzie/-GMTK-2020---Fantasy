@@ -303,6 +303,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &474238483 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8330437603592135337, guid: a0da5a2111d0c5a439fc0bb4a5fc18a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 851211645}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &474238484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474238483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2421298fe058d4241ab9685cc84e246f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glitchyClips:
+  - {fileID: 8300000, guid: 37c65df0c05d8ca4eb806f0e558e04f1, type: 3}
+  backgroundMusic: {fileID: 8300000, guid: 72c6d35417d40c940a9833b25b69aa8b, type: 3}
 --- !u!1 &503709523
 GameObject:
   m_ObjectHideFlags: 0
