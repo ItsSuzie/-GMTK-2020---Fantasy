@@ -21,14 +21,18 @@ public class audioManager : MonoBehaviour
 
     public void playGlitchyClip(int index)
     {
-        // get the current time of the bacground
-        bgMusicCurrentTime = audioSource.time;
-        audioSource.Stop();
+        // if index is legal
+        if(index < glitchyClips.Length - 1)
+        {
+            // get the current time of the bacground
+            bgMusicCurrentTime = audioSource.time;
+            audioSource.Stop();
 
-        // Pause current track
-        audioSource.PlayOneShot(glitchyClips[index]);
+            // Pause current track
+            audioSource.PlayOneShot(glitchyClips[index]);
 
-        Invoke("returnBGMusic", glitchyClips[index].length);
+            Invoke("returnBGMusic", glitchyClips[index].length);
+        }
     }
 
     private void returnBGMusic()
@@ -39,6 +43,6 @@ public class audioManager : MonoBehaviour
 
     // todo: when files exist, do speicific things to the music
     // like reverse controlles, wobble the pitch
-    
+
 
 }
