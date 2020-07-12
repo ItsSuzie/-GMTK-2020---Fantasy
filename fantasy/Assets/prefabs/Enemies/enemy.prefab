@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3019630497858589473}
   - component: {fileID: 3019630497858589484}
   - component: {fileID: 3019630497858589472}
+  - component: {fileID: 2339449987312333753}
   m_Layer: 10
   m_Name: enemy
   m_TagString: Untagged
@@ -124,3 +125,24 @@ MonoBehaviour:
   player: {fileID: 0}
   speed: 2
   minDistance: 1
+--- !u!50 &2339449987312333753
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3019630497858589479}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

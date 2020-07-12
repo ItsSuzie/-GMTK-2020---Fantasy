@@ -52,10 +52,9 @@ public class Enemy : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
         playerDistance = Vector2.Distance(transform.position, player.position);
 
-        if (playerDistance < minDistance)
-        {
-            rb2d.MovePosition(Vector2.MoveTowards(transform.position, player.position, -1 * speed * Time.deltaTime));
-        }
+        
+        rb2d.MovePosition(Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime));
+        
 
 
         // Check if the file of this enemy exists. If it doesnt, decrease the enmy health by a ton
