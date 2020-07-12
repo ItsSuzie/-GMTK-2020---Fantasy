@@ -4,60 +4,54 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+
     private bool isActive;
-    private bool initiateNameChange;
 
-    // [HideInInspector] public float spawnRate;
-    // private float SpawnRateTimer = 0;
-
-    public Transform EnemyHolder;
+    [HideInInspector] public float spawnRate;
+    private float SpawnRateTimer = 0;
 
     [SerializeField] private Enemy enemyType;
     [SerializeField] private float spawnArea;
 
-    [SerializeField] private int enemiesPerPoint;
+    [SerializeField] private int numberOfEnemies;
     [SerializeField] private int enemyRandomness;
-    [SerializeField] private int totalNumberOfEnemies;
+    private int totalNumberOfEnemies;
+
+    [SerializeField] private float setpointDelay;
+    [SerializeField]
 
     // Start is called before the first frame update
     void Start()
     {
-    } 
-
+    }   
 
     // Update is called once per frame
     void Update()
     {
+
+
         totalNumberOfEnemies = enemyType.enemyCount;
 
         if (isActive) 
         {
-            initiateNameChange = true;
-
             GameObject[] enemySpawnPoints = GameObject.FindGameObjectsWithTag("EnemySpawnPoints");
 
-            foreach (GameObject spawnPoint in enemySpawnPoints)
+            for (int enemy = 0; enemy < numberOfEnemies; enemy++)
             {
-                int numOfEnemies = (enemiesPerPoint - enemyRandomness > 0) ? enemiesPerPoint + Random.Range(enemyRandomness, -enemyRandomness) : enemiesPerPoint + Random.Range(0, enemyRandomness); //im sorry eveyrone hates ternery but this looks pretty cleann
+                GameObject spawnPoint = enemySpawnPoints[Random.Range(0, enemySpawnPoints.Length - 1)];
+                Instantiate(enemyType, new Vector2(spawnPoint.transform.position.x + Random.Range(spawnArea, -spawnArea), spawnPoint.transform.position.y + Random.Range(spawnArea, -spawnArea)), Quaternion.identity);
                 
-                // if (SpawnRateTimer <= 0)
-                // {
-                for (int enemy = 1; enemy < numOfEnemies; enemy++)
-                {
-                    Enemy clone = Instantiate(enemyType, new Vector2(spawnPoint.transform.position.x + Random.Range(spawnArea, -spawnArea), spawnPoint.transform.position.y + Random.Range(spawnArea, -spawnArea)), Quaternion.identity);
-                    clone.transform.SetParent(EnemyHolder);
-                    // clone.nameSetter = GetComponent<EnemyNameSetter>();
-                }
-                // SpawnRateTimer = spawnRate;
+                SpawnRateTimer = spawnRate;
                 // }
             }
             isActive = false;
         }
-        if (totalNumberOfEnemies == 0) { 
+
+        else if (totalNumberOfEnemies == 0) { 
             isActive = true;
         }
 
-        // Debug.Log("Total Number of Enemies: " + totalNumberOfEnemies.ToString() + " || enemyType.enemyCount: " + enemyType.enemyCount.ToString());
+        Debug.Log("Total Number of Enemies: " + totalNumberOfEnemies.ToString() + " || enemyType.enemyCount: " + enemyType.enemyCount.ToString());
 
 
         // Might look into this later

@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class EnemyEvade : MonoBehaviour
 {
     private static int EnemyCount = 0;
-
-    public EnemyNameSetter nameSetter;
 
     public int HP;
     private int maxHP;
@@ -25,29 +23,24 @@ public class Enemy : MonoBehaviour
     void Awake()
     {
         EnemyCount++;
-        // Debug.Log(enemyCount.ToString());
-        iOManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<fileIOManager>();
+        Debug.Log(enemyCount.ToString());
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        //get something player == something something get instance()
         boxCollider = GetComponent<BoxCollider2D>();
         rb2d = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        iOManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<fileIOManager>();
 
         maxHP = HP;
 
-        nameSetter = transform.GetComponentInParent<EnemyNameSetter>();
-        transform.name = nameSetter.getNameForObject();
-        createEnemyFile();
-    }
-
-    // Gets called from instantiation
-    public void createEnemyFile()
-    {
         iOManager.CreateFileFromStringNoDuplicates(transform.name);
         fileFound = true;
+
+
     }
 
     // Update is called once per frame
@@ -59,13 +52,16 @@ public class Enemy : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
         playerDistance = Vector2.Distance(transform.position, player.position);
 
+        if (playerDistance < minDistance)
+        {
+            rb2d.MovePosition(Vector2.MoveTowards(transform.position, player.position, -1 * speed * Time.deltaTime));
+        }
         
-        rb2d.MovePosition(Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime));
-        
+
 
 
         // Check if the file of this enemy exists. If it doesnt, decrease the enmy health by a ton
-        if(fileFound)
+        if (fileFound)
         {
             if (!iOManager.isFileExists(transform.name))
             {
@@ -79,13 +75,14 @@ public class Enemy : MonoBehaviour
     {
         HP--;
 
-        if(HP <= 0)
+        if (HP <= 0)
         {
             die();
         }
     }
 
-    public void die() {
+    public void die()
+    {
         // maybe stuff
         EnemyCount--;
         if (iOManager.isFileExists(transform.name))
@@ -93,10 +90,8 @@ public class Enemy : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public int enemyCount 
+    public int enemyCount
     {
         get { return EnemyCount; }
     }
 }
-
-
