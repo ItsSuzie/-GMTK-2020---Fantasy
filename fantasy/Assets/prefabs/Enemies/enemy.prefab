@@ -120,10 +120,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be0342d2b4f2d0b4f8d906254f0420ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 10
+  nameSetter: {fileID: 0}
+  HP: 12
   hpLossMultiplier: 0.25
   player: {fileID: 0}
-  speed: 2
+  speed: 1
   minDistance: 1
 --- !u!50 &2339449987312333753
 Rigidbody2D:

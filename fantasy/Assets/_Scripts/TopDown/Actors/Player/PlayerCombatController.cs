@@ -66,7 +66,7 @@ public class PlayerCombatController : MonoBehaviour
         // If not pacifised, attack
         if (!D_Pacifism)
         {
-            Debug.Log("Attacking");
+            // Debug.Log("Attacking");
             if (attackDirection == PlayerMovement.PLAYER_FACING_DIRECTION.UP) {
                 lastFacingDir = 0;
             }
@@ -86,7 +86,7 @@ public class PlayerCombatController : MonoBehaviour
             // Create raycast box for checking if enemy has been hit
             RaycastHit2D[] hits = Physics2D.BoxCastAll(rayOrigin, attackRect[lastFacingDir].size, 0, _attackDirection, _attackDistance, hitMask);
             foreach (RaycastHit2D hit in hits) {
-                Debug.Log("Hit " + hit.transform.name);
+                // Debug.Log("Hit " + hit.transform.name);
                 hit.transform.GetComponent<Enemy>().TakeDamage();
             }
         }

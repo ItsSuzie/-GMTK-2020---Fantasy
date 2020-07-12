@@ -11,6 +11,7 @@ public class EnemySpawner : MonoBehaviour
     private float SpawnRateTimer = 0;
 
     [SerializeField] private Enemy enemyType;
+    [SerializeField] private Transform enemyHolder;
     [SerializeField] private float spawnArea;
 
     [SerializeField] private int numberOfEnemies;
@@ -39,8 +40,8 @@ public class EnemySpawner : MonoBehaviour
             for (int enemy = 0; enemy < numberOfEnemies; enemy++)
             {
                 GameObject spawnPoint = enemySpawnPoints[Random.Range(0, enemySpawnPoints.Length - 1)];
-                Instantiate(enemyType, new Vector2(spawnPoint.transform.position.x + Random.Range(spawnArea, -spawnArea), spawnPoint.transform.position.y + Random.Range(spawnArea, -spawnArea)), Quaternion.identity);
-                
+                Enemy clone = Instantiate(enemyType, new Vector2(spawnPoint.transform.position.x + Random.Range(spawnArea, -spawnArea), spawnPoint.transform.position.y + Random.Range(spawnArea, -spawnArea)), Quaternion.identity);
+                clone.transform.SetParent(enemyHolder);
                 SpawnRateTimer = spawnRate;
                 // }
             }
