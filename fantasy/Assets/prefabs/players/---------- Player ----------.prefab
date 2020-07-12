@@ -643,6 +643,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinMaxDebuffIntervalSeconds: {x: 2, y: 10}
   debuffIntervalTimer: 0
+--- !u!114 &604456354667738413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096948062378800982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f19b087b909ad45be0416de3a6685d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinMaxDebuffIntervalSeconds: {x: 5, y: 15}
+  debuffIntervalTimer: 0
 --- !u!1 &8330437602973745649
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,7 +968,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
