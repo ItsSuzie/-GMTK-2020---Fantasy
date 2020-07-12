@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/FinalScene/GMTKlogo.unity
+    guid: 31d87f64c5e58904bbad9926573138ec
+  - enabled: 1
     path: Assets/Scenes/FinalScene/MainMenu.unity
     guid: d54f390fab17a6d4eac665bb06dfc27c
   - enabled: 1
