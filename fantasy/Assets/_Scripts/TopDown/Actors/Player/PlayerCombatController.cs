@@ -35,6 +35,7 @@ public class PlayerCombatController : MonoBehaviour
 
     // Debuff Variables
     private bool D_Pacifism = false;
+    private bool D_AnxietyNoCombat = false;
 
     private Vector2 attackOffset;
 
@@ -75,7 +76,7 @@ public class PlayerCombatController : MonoBehaviour
     public void initiateAttack(PlayerMovement.PLAYER_FACING_DIRECTION attackDirection)
     {
         // If not pacifised, attack
-        if (!D_Pacifism)
+        if (!D_Pacifism || !D_AnxietyNoCombat)
         {
             // Debug.Log("Attacking");
             if (attackDirection == PlayerMovement.PLAYER_FACING_DIRECTION.UP) {
@@ -187,6 +188,11 @@ public class PlayerCombatController : MonoBehaviour
     public bool debuffPacifist
     {
         set { D_Pacifism = value; }
+    }
+
+    public bool DebuffSetAnxietyNoCombat
+    {
+        set { D_AnxietyNoCombat = value; }
     }
 
 

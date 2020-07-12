@@ -38,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
     // Debuff values
     private bool D_BrainFreeze = false;
     private float D_BFSpeedDecreaseMultiplier;
+    private bool D_AnxietyNoMove = false;
+
 
     #endregion
 
@@ -95,73 +97,77 @@ public class PlayerMovement : MonoBehaviour
     public void initiatiteMovement(Vector2 moveDirection, bool isSprinting)
     {
 
-        // Move player position based on the current player position + the direction the player is moving,
-        // Then multiply that by the speed the player will move, and then multiplay that by deltaTime to ensure
-        // it's moving at realtime
-        temptMoveSpeed = moveSpeed;
-        TempSprintSpeed = sprintSpeed;
+        if(!D_AnxietyNoMove)
+        {
 
-        // Debuffs
-        if(D_BrainFreeze)
-        {
-            temptMoveSpeed *= D_BFSpeedDecreaseMultiplier;
-            TempSprintSpeed *= D_BFSpeedDecreaseMultiplier;
-        }
+            // Move player position based on the current player position + the direction the player is moving,
+            // Then multiply that by the speed the player will move, and then multiplay that by deltaTime to ensure
+            // it's moving at realtime
+            temptMoveSpeed = moveSpeed;
+            TempSprintSpeed = sprintSpeed;
 
-        
+            // Debuffs
+            if(D_BrainFreeze)
+            {
+                temptMoveSpeed *= D_BFSpeedDecreaseMultiplier;
+                TempSprintSpeed *= D_BFSpeedDecreaseMultiplier;
+            }
 
-        // Player moving and facing upwards, moving up diagonals left or right
-        if (moveDirection.y > 0 && (moveDirection.x <= 0.5f || moveDirection.x >= -0.5f))
-        {
-            facingDirection = PLAYER_FACING_DIRECTION.UP;
-            // anim.SetFloat("Horizontal", 0);
-            // anim.SetFloat("Vertical", 1);
-        }
-        else if (moveDirection.y < 0 && (moveDirection.x <= 0.5f || moveDirection.x >= -0.5f))
-        {
-            facingDirection = PLAYER_FACING_DIRECTION.DOWN;
-            // anim.SetFloat("Horizontal", 0);
-            // anim.SetFloat("Vertical", -1);
-        }
-        // If player if moving and facing right, moving right diagonals up or down
-        else if (moveDirection.x > 0 && (moveDirection.y <= 0.5f || moveDirection.y >= -0.5f))
-        {
-            facingDirection = PLAYER_FACING_DIRECTION.RIGHT;
-            // anim.SetFloat("Horizontal", 1);
-            // anim.SetFloat("Vertical", 0);
-        }
-        else if (moveDirection.x < 0 && (moveDirection.y <= 0.5f || moveDirection.y >= -0.5f))
-        {
-            facingDirection = PLAYER_FACING_DIRECTION.LEFT;
-            // anim.SetFloat("Horizontal", -1);
-            // anim.SetFloat("Vertical", 0);
-        }
+            
 
-        // Stores the temp move position
-        Vector2 tempMove = Vector2.zero;
+            // Player moving and facing upwards, moving up diagonals left or right
+            if (moveDirection.y > 0 && (moveDirection.x <= 0.5f || moveDirection.x >= -0.5f))
+            {
+                facingDirection = PLAYER_FACING_DIRECTION.UP;
+                // anim.SetFloat("Horizontal", 0);
+                // anim.SetFloat("Vertical", 1);
+            }
+            else if (moveDirection.y < 0 && (moveDirection.x <= 0.5f || moveDirection.x >= -0.5f))
+            {
+                facingDirection = PLAYER_FACING_DIRECTION.DOWN;
+                // anim.SetFloat("Horizontal", 0);
+                // anim.SetFloat("Vertical", -1);
+            }
+            // If player if moving and facing right, moving right diagonals up or down
+            else if (moveDirection.x > 0 && (moveDirection.y <= 0.5f || moveDirection.y >= -0.5f))
+            {
+                facingDirection = PLAYER_FACING_DIRECTION.RIGHT;
+                // anim.SetFloat("Horizontal", 1);
+                // anim.SetFloat("Vertical", 0);
+            }
+            else if (moveDirection.x < 0 && (moveDirection.y <= 0.5f || moveDirection.y >= -0.5f))
+            {
+                facingDirection = PLAYER_FACING_DIRECTION.LEFT;
+                // anim.SetFloat("Horizontal", -1);
+                // anim.SetFloat("Vertical", 0);
+            }
 
-        // Defines movement - normal speed vs sprinting
-        if (!isSprinting)
-        {
-            tempMove = rb2d.position + moveDirection * temptMoveSpeed * Time.fixedDeltaTime;
-        }
-        else
-        {
-            tempMove = rb2d.position + moveDirection * TempSprintSpeed * Time.fixedDeltaTime;
-        }
+            // Stores the temp move position
+            Vector2 tempMove = Vector2.zero;
 
-        // Move the player
-        if (moveDirection != Vector2.zero)// && movementAllowed(ref tempMove))
-        {
-            // Sets position, moves player
-            rb2d.MovePosition(tempMove);
-            // anim.SetTrigger("isMoving");
-        }
-        else
-        {
-            rb2d.MovePosition(transform.position);
-        }
+            // Defines movement - normal speed vs sprinting
+            if (!isSprinting)
+            {
+                tempMove = rb2d.position + moveDirection * temptMoveSpeed * Time.fixedDeltaTime;
+            }
+            else
+            {
+                tempMove = rb2d.position + moveDirection * TempSprintSpeed * Time.fixedDeltaTime;
+            }
 
+            // Move the player
+            if (moveDirection != Vector2.zero)// && movementAllowed(ref tempMove))
+            {
+                // Sets position, moves player
+                rb2d.MovePosition(tempMove);
+                // anim.SetTrigger("isMoving");
+            }
+            else
+            {
+                rb2d.MovePosition(transform.position);
+            }
+            
+        }
 
     }
 
@@ -182,6 +188,10 @@ public class PlayerMovement : MonoBehaviour
         D_BFSpeedDecreaseMultiplier = speedDec; 
     }
 
+    public bool SetNoMove
+    {
+        set { D_AnxietyNoMove = value; }
+    }
     #endregion
 
 }

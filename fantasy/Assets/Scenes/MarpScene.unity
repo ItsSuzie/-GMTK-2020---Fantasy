@@ -486,6 +486,50 @@ Transform:
   m_Father: {fileID: 1601684785}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2053078098 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1096948062378800982, guid: a0da5a2111d0c5a439fc0bb4a5fc18a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 8330437604572552522}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2053078099 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2730574682257303526, guid: a0da5a2111d0c5a439fc0bb4a5fc18a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 8330437604572552522}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2053078098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0c8e4c9486c56e46bded58418a20964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2053078100 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1096948062378800985, guid: a0da5a2111d0c5a439fc0bb4a5fc18a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 8330437604572552522}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2053078098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13a494fde86b9ce4ca69fc490fa5dff5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2053078109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2053078098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f19b087b909ad45be0416de3a6685d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinMaxDebuffIntervalSeconds: {x: 2, y: 10}
+  debuffIntervalTimer: 0
 --- !u!1001 &8330437604572552522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -578,5 +622,40 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8330437604800717891, guid: a0da5a2111d0c5a439fc0bb4a5fc18a2,
+        type: 3}
+      propertyPath: anxietyTimerRandom.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8330437604800717891, guid: a0da5a2111d0c5a439fc0bb4a5fc18a2,
+        type: 3}
+      propertyPath: anxietyTimerRandom.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8330437604800717891, guid: a0da5a2111d0c5a439fc0bb4a5fc18a2,
+        type: 3}
+      propertyPath: AnxietyDelayRandom.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8330437604800717891, guid: a0da5a2111d0c5a439fc0bb4a5fc18a2,
+        type: 3}
+      propertyPath: AnxietyDelayRandom.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8330437604800717891, guid: a0da5a2111d0c5a439fc0bb4a5fc18a2,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8330437604800717891, guid: a0da5a2111d0c5a439fc0bb4a5fc18a2,
+        type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 2053078100}
+    - target: {fileID: 8330437604800717891, guid: a0da5a2111d0c5a439fc0bb4a5fc18a2,
+        type: 3}
+      propertyPath: playerCombat
+      value: 
+      objectReference: {fileID: 2053078099}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0da5a2111d0c5a439fc0bb4a5fc18a2, type: 3}

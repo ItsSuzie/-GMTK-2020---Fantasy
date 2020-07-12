@@ -31,7 +31,7 @@ public class fileIOManager : MonoBehaviour
         createDirectory();
 
 
-        // Process.Start(@filePath);
+        Process.Start(@filePath);
         // Process.Start(@"Notepad.exe", filePath + "/../README.forest");
     }
 
