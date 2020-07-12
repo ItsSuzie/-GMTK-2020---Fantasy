@@ -29,7 +29,6 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //get something player == something something get instance()
         boxCollider = GetComponent<BoxCollider2D>();
         rb2d = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -91,3 +90,5 @@ public class Enemy : MonoBehaviour
         get { return EnemyCount; }
     }
 }
+
+
