@@ -4045,6 +4045,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1573110651, guid: a0da5a2111d0c5a439fc0bb4a5fc18a2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 851211647}
+    - target: {fileID: 1573110651, guid: a0da5a2111d0c5a439fc0bb4a5fc18a2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: reloadForest
+      objectReference: {fileID: 0}
     - target: {fileID: 8330437602973745649, guid: a0da5a2111d0c5a439fc0bb4a5fc18a2,
         type: 3}
       propertyPath: m_Name
@@ -4107,6 +4115,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0da5a2111d0c5a439fc0bb4a5fc18a2, type: 3}
+--- !u!1 &851211646 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8330437604409857788, guid: a0da5a2111d0c5a439fc0bb4a5fc18a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 851211645}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &851211647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851211646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a97b88c92f4ea8842bbec790a62d1c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &853979439
 GameObject:
   m_ObjectHideFlags: 0
@@ -11835,6 +11861,7 @@ MonoBehaviour:
   numberOfEnemies: 21
   enemyRandomness: 2
   setpointDelay: 0
+  spawnTime: 0
 --- !u!4 &1894218263
 Transform:
   m_ObjectHideFlags: 0

@@ -34,38 +34,38 @@ public class fileIOManager : MonoBehaviour
 
         
 
-        DeleteDirectory();
-        createDirectory();
+        // DeleteDirectory();
+        // createDirectory();
 
 
-        Process.Start(@filePath);
-        string readmePath = filePath + "/README.forest";
-        // Create a file to write to.
-        using (StreamWriter sw = File.CreateText(readmePath))
-        {
-            sw.WriteLine("\n\n\nYou are Wander");
-            sw.WriteLine("You chose to get away from everyone");
-            sw.WriteLine("Now you're alone in a dark forest");
-            sw.WriteLine("Like you planned");
-            sw.WriteLine("");
-            sw.WriteLine("You're going insane");
-            sw.WriteLine("You're hellucinating");
-            sw.WriteLine("You're not in a good place");
-            sw.WriteLine("Your mind wants to kill you");
-            sw.WriteLine("");
-            sw.WriteLine("Survive as long as you can by fighting off the monsters in this forest");
-            sw.WriteLine("and by fighting off the monsters in your mind");
-            sw.WriteLine("");
-            sw.WriteLine("");
-            sw.WriteLine("This game requires you to delete files in the directory automatically opened for you");
-            sw.WriteLine("You must work hard to fight off the enemies");
-            sw.WriteLine("As well as fight off the monsters inside your head");
-            sw.WriteLine("");
-            sw.WriteLine("");
-            sw.WriteLine("");
+        // Process.Start(@filePath);
+        // string readmePath = filePath + "/README.forest";
+        // // Create a file to write to.
+        // using (StreamWriter sw = File.CreateText(readmePath))
+        // {
+        //     sw.WriteLine("\n\n\nYou are Wander");
+        //     sw.WriteLine("You chose to get away from everyone");
+        //     sw.WriteLine("Now you're alone in a dark forest");
+        //     sw.WriteLine("Like you planned");
+        //     sw.WriteLine("");
+        //     sw.WriteLine("You're going insane");
+        //     sw.WriteLine("You're hellucinating");
+        //     sw.WriteLine("You're not in a good place");
+        //     sw.WriteLine("Your mind wants to kill you");
+        //     sw.WriteLine("");
+        //     sw.WriteLine("Survive as long as you can by fighting off the monsters in this forest");
+        //     sw.WriteLine("and by fighting off the monsters in your mind");
+        //     sw.WriteLine("");
+        //     sw.WriteLine("");
+        //     sw.WriteLine("This game requires you to delete files in the directory automatically opened for you");
+        //     sw.WriteLine("You must work hard to fight off the enemies");
+        //     sw.WriteLine("As well as fight off the monsters inside your head");
+        //     sw.WriteLine("");
+        //     sw.WriteLine("");
+        //     sw.WriteLine("");
 
-        }
-        Process.Start(@"Notepad.exe", filePath + "/README.forest");
+        // }
+        // Process.Start(@"Notepad.exe", filePath + "/README.forest");
     }
 
     private void Update() {
@@ -94,6 +94,18 @@ public class fileIOManager : MonoBehaviour
                 File.Delete(files[i]);
             Directory.Delete(filePath);
         }
+    }
+
+    public void cleanDirectory()
+    {
+         string[] files = Directory.GetFiles(filePath);
+            for(int i = 0; i < files.Length; ++i)
+            {
+                if(files[i] != "/README.forest")
+                {
+                    File.Delete(files[i]);
+                }
+            }
     }
 
     private void createDirectory()
