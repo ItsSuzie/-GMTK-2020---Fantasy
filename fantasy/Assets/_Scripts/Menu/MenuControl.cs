@@ -28,7 +28,7 @@ public class MenuControl : MonoBehaviour
             sw.WriteLine("Like you planned");
             sw.WriteLine("");
             sw.WriteLine("You're going insane");
-            sw.WriteLine("You're hellucinating");
+            sw.WriteLine("You're hallucinating");
             sw.WriteLine("You're not in a good place");
             sw.WriteLine("Your mind wants to kill you");
             sw.WriteLine("");
