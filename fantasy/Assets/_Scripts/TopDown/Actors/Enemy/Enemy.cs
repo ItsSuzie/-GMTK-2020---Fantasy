@@ -64,11 +64,34 @@ public class Enemy : MonoBehaviour
         // rot_z = (Mathf.Atan2(player.transform.position.y, player.transform.position.x) * Mathf.Rad2Deg) - 90;
         // transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
 
-        playerDistance = Vector2.Distance(transform.position, player.position);
+        // playerDistance = Vector2.Distance(transform.position, player.position);
         rb2d.MovePosition(Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime));
-        angle = Vector2.Angle(transform.position, player.position);
 
-        
+        angle = AngleTo(transform.position, player.position);
+        if ((angle >= 0 && angle < 45) || (angle > 315 && angle <= 359))
+        {
+            anim.SetFloat("Horizontal", 1);
+            anim.SetFloat("Vertical", 0);
+            Debug.Log("Facing right");
+        }
+        else if(angle >= 135 && angle < 225)
+        {
+            anim.SetFloat("Horizontal", -1);
+            anim.SetFloat("Vertical", 0);
+            Debug.Log("facing Left");
+        }
+        else if(angle >= 45 && angle < 135)
+        {
+            anim.SetFloat("Horizontal", 0);
+            anim.SetFloat("Vertical", 1);
+            Debug.Log("Facing Up");
+        }
+        else if(angle >= 225 && angle < 315)
+        {
+            anim.SetFloat("Horizontal", 0);
+            anim.SetFloat("Vertical", -1);
+            Debug.Log("facing down");
+        }
 
 
         // Check if the file of this enemy exists. If it doesnt, decrease the enmy health by a ton
@@ -80,6 +103,22 @@ public class Enemy : MonoBehaviour
                 HP = (int)(maxHP * hpLossMultiplier);
             }
         }
+    }
+
+     public float FindDegree(int x, int y)
+     {
+        float value = (float)((Mathf.Atan2(x, y) / Mathf.PI) * 180f);
+        if(value < 0) value += 360f;
+    
+        return value;
+    }
+    
+    public float AngleTo(Vector2 this_, Vector2 to)
+    {
+        Vector2 direction = to - this_;
+        float angle = Mathf.Atan2(direction.y,  direction.x) * Mathf.Rad2Deg;
+        if (angle < 0f) angle += 360f;
+        return angle;
     }
 
     public void TakeDamage()
