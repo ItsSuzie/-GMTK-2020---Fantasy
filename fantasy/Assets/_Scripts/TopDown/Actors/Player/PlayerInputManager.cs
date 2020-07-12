@@ -101,7 +101,7 @@ public class PlayerInputManager : MonoBehaviour
             moveDirection.y = -Input.GetAxisRaw("Vertical");
         }
 
-        isAttacking = Input.GetKeyDown("z") || Input.GetKeyDown("/");
+        isAttacking = Input.GetKeyDown("z") || Input.GetKeyDown("/") || Input.GetKeyDown(KeyCode.Space);
     }
 
     #endregion
