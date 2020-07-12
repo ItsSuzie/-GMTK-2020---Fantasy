@@ -30,6 +30,7 @@ public class PlayerCombatController : MonoBehaviour
     private PlayerInputManager inputManager;
     private PlayerMovement playerMovement;
     private BoxCollider2D box2d;
+    private Animator anim;
     // private PlayerAttributesController playerAttributes;
 
     [SerializeField] private fileIOManager IOManager;
@@ -58,6 +59,7 @@ public class PlayerCombatController : MonoBehaviour
         inputManager = GetComponent<PlayerInputManager>();
         playerMovement = GetComponent<PlayerMovement>();
         box2d = GetComponent<BoxCollider2D>();
+        anim = GetComponent<Animator>();
         numLivesMax = numberOfLives;
 
         UpdateLives(false);
@@ -80,6 +82,9 @@ public class PlayerCombatController : MonoBehaviour
         // If not pacifised, attack
         if (!D_Pacifism || !D_AnxietyNoCombat)
         {
+            // activate attack anim
+            anim.SetTrigger("isAttacking");
+
             // Debug.Log("Attacking");
             if (attackDirection == PlayerMovement.PLAYER_FACING_DIRECTION.UP) {
                 lastFacingDir = 0;
@@ -93,6 +98,7 @@ public class PlayerCombatController : MonoBehaviour
             else if (attackDirection == PlayerMovement.PLAYER_FACING_DIRECTION.RIGHT) {
                 lastFacingDir = 3;
             }
+            
             
 
             rayOrigin = (Vector2)transform.position + attackRect[lastFacingDir].center;
