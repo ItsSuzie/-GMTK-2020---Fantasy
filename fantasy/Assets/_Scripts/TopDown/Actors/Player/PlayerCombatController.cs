@@ -12,9 +12,13 @@ public class PlayerCombatController : MonoBehaviour
     private Vector2 _attackDirection = Vector2.zero;    // may not be used
     private float _attackDistance;       // may not be used
     public LayerMask hitMask;
+    public float invulerabilityTimer = 2;
+    private float invulerabilityTimerCountdown;
+
     [SerializeField] private int lastFacingDir;
     [SerializeField] private int numberOfLives;
     private int numLivesMax;
+    private bool healthCreated = false;
 
     private Vector2 rayOrigin;
 
@@ -23,7 +27,7 @@ public class PlayerCombatController : MonoBehaviour
     // Component references
     private PlayerInputManager inputManager;
     private PlayerMovement playerMovement;
-    
+    private BoxCollider2D box2d;
     // private PlayerAttributesController playerAttributes;
 
     [SerializeField] private fileIOManager IOManager;
@@ -50,13 +54,20 @@ public class PlayerCombatController : MonoBehaviour
         // Defines the component references
         inputManager = GetComponent<PlayerInputManager>();
         playerMovement = GetComponent<PlayerMovement>();
+        box2d = GetComponent<BoxCollider2D>();
         numLivesMax = numberOfLives;
 
-        UpdateLives();
+        UpdateLives(false);
     }
 
     private void Update() 
     {
+        DetectEnemyHit();
+
+        // TODO: Check for health file discrepency
+        /*
+        if the aamount of health files dont correspond to the amount of lives the player has, kill
+        */
     }
 
 
@@ -92,24 +103,63 @@ public class PlayerCombatController : MonoBehaviour
         }
     }
 
-    public void UpdateLives() {
-        for (int i = 0; i < numLivesMax; i++) {
-            Debug.Log("Loop Iteration: " + i);
+    public void UpdateLives(bool hit) {
+        // for (int i = 0; i < numberOfLives; i++) {
+        //     Debug.Log("Loop Iteration: " + i);
 
-            if (IOManager.isFileExists(IOManager.mainHealthFileNames[i])) { //if file exists
-                if (i > numberOfLives) { //and it belongs to a life that you dont have
-                    IOManager.deleteFileFromString(IOManager.mainHealthFileNames[i]); // yeet it
-                }
+        //     if (IOManager.isFileExists(IOManager.mainHealthFileNames[i])) { //if file exists
+        //         if (i > numberOfLives) { //and it belongs to a life that you dont have
+        //             IOManager.deleteFileFromString(IOManager.mainHealthFileNames[i]); // yeet it
+        //         }
+        //     }
+        //     else if (i < numberOfLives) { //if it doesnt exist and we actually need it
+        //         IOManager.createFileFromString("Health"); //create it 
+        //     }
+        // }
+
+        for (int i = 0; i < numLivesMax && !hit; i++)
+        {
+            IOManager.createFileFromString("Health");
+        }
+
+        if(hit)
+        {
+            IOManager.DeleteFile("Health" + "(" + (numberOfLives+1) + ")");
+        }
+
+
+    }
+
+
+    private void DetectEnemyHit()
+    {
+        // If invul gone, detect hit again
+        if(invulerabilityTimerCountdown <= 0)
+        {
+            // Boxcast hit detection
+            Vector2 hitBoxOrigin = (Vector2)transform.position;
+            RaycastHit2D hit = Physics2D.BoxCast(hitBoxOrigin, (Vector2)box2d.bounds.size + new Vector2(0.5f, 0.5f), 0, Vector2.zero, 0, hitMask);
+            if(hit)
+            {
+                // reset timer;
+                Debug.Log("hit by enemy");
+                invulerabilityTimerCountdown = invulerabilityTimer;
+                Hit();
             }
-            else if (i < numberOfLives) { //if it doesnt exist and we actually need it
-                IOManager.createFileFromString("Health"); //create it 
-            }
+        }
+
+        // countdown timer
+        if (invulerabilityTimerCountdown > 0)
+        {
+            invulerabilityTimerCountdown -= Time.deltaTime;
         }
     }
 
+
+
     public void Hit() {
         numberOfLives--;
-        UpdateLives();
+        UpdateLives(true);
 
         if (numberOfLives == 0) {
             //TODO do game over stuff

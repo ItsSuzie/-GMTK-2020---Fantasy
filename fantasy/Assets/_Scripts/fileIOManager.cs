@@ -25,18 +25,7 @@ public class fileIOManager : MonoBehaviour
         // Sets the path where all the files will live
         filePath = Application.dataPath + rootFilePath;
 
-        // // If the file path does not exist, create that path
-        // if(!Directory.Exists(filePath))
-        // {
-        //     DirectoryInfo di = Directory.CreateDirectory(filePath);
-        // }
-        // // if the directory exists already, delete everything in that directory
-        // else
-        // {
-        //     string[] files = Directory.GetFiles(filePath);
-        //     for(int i = 0; i < files.Length; ++i)
-        //         File.Delete(files[i]);
-        // }
+        
 
         DeleteDirectory();
         createDirectory();
@@ -46,21 +35,9 @@ public class fileIOManager : MonoBehaviour
         // Process.Start(@"Notepad.exe", filePath + "/../README.forest");
     }
 
-    private void Update()
-    {
-        // if(Input.GetKeyDown(KeyCode.J))
-        //     createFileFromDebuffListRandom();
-        // if(Input.GetKeyDown(KeyCode.K))
-        //     createFileFromMainHealthFileNamesRandom();
-    }
-
     private void OnApplicationQuit()
     {
         DeleteDirectory();
-        // if(Directory.Exists(filePath))
-        // {
-        //     File.Delete(filePath + "/../README.forest");
-        // }
     }
 
     #region fileManagement
@@ -84,7 +61,6 @@ public class fileIOManager : MonoBehaviour
         }
     }
 
-
     public void DeleteFile(string fileToDelete)
     {
         if(Directory.Exists(filePath))
@@ -92,8 +68,6 @@ public class fileIOManager : MonoBehaviour
             File.Delete(filePath + fileToDelete);
         }
     }
-
-
 
     public bool isFileExists(string filename) {
         return File.Exists(filePath + filename);
