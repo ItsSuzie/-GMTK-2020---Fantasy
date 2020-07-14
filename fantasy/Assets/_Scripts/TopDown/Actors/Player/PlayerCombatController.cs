@@ -133,7 +133,8 @@ public class PlayerCombatController : MonoBehaviour
 
         for (int i = 0; i < numLivesMax && !hit; i++)
         {
-            IOManager.createFileFromString("Health");
+            // IOManager.createFileFromString("Health");
+            IOManager.CreateFileFromStringNoDuplicates("Health(" + (i+1) + ")");
         }
 
         if(hit)
