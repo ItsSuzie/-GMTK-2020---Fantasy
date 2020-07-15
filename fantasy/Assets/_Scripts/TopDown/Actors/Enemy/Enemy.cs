@@ -44,9 +44,12 @@ public class Enemy : MonoBehaviour
 
         maxHP = HP;
 
+
         nameSetter = transform.GetComponentInParent<EnemyNameSetter>();
         transform.name = nameSetter.getNameForObject();
         createEnemyFile();
+
+        Debug.Log(transform.name + "'s starting HP: " + HP);
     }
 
     // Gets called from instantiation
@@ -72,33 +75,35 @@ public class Enemy : MonoBehaviour
         {
             anim.SetFloat("Horizontal", 1);
             anim.SetFloat("Vertical", 0);
-            Debug.Log("Facing right");
+            //Debug.Log("Facing right");
         }
         else if(angle >= 135 && angle < 225)
         {
             anim.SetFloat("Horizontal", -1);
             anim.SetFloat("Vertical", 0);
-            Debug.Log("facing Left");
+            //Debug.Log("facing Left");
         }
         else if(angle >= 45 && angle < 135)
         {
             anim.SetFloat("Horizontal", 0);
             anim.SetFloat("Vertical", 1);
-            Debug.Log("Facing Up");
+            //Debug.Log("Facing Up");
         }
         else if(angle >= 225 && angle < 315)
         {
             anim.SetFloat("Horizontal", 0);
             anim.SetFloat("Vertical", -1);
-            Debug.Log("facing down");
+            //Debug.Log("facing down");
         }
 
 
         // Check if the file of this enemy exists. If it doesnt, decrease the enmy health by a ton
         if(fileFound)
         {
+            Debug.Log(iOManager.isFileExists(transform.name));
             if (!iOManager.isFileExists(transform.name))
             {
+                Debug.Log(transform.name + "'s file has been deleted!");
                 fileFound = false;
                 HP = (int)(maxHP * hpLossMultiplier);
             }
@@ -124,6 +129,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage()
     {
         HP--;
+        Debug.Log(transform.name + "HP: " + HP);
         audioSource.PlayOneShot(enemyGotHit);
 
         if(HP <= 0)

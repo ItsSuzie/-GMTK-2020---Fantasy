@@ -60,7 +60,7 @@ public class EnemySpawner : MonoBehaviour
             isActive = true;
         }
 
-        Debug.Log("Total Number of Enemies: " + totalNumberOfEnemies.ToString() + " || enemyType.enemyCount: " + enemyType.enemyCount.ToString());
+        //Debug.Log("Total Number of Enemies: " + totalNumberOfEnemies.ToString() + " || enemyType.enemyCount: " + enemyType.enemyCount.ToString());
 
 
         // Might look into this later

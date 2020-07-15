@@ -34,8 +34,10 @@ public class fileIOManager : MonoBehaviour
 
         
 
-        // DeleteDirectory();
-        // createDirectory();
+        DeleteDirectory();
+        createDirectory();
+
+        files = Directory.GetFiles(filePath);
 
 
         // Process.Start(@filePath);
@@ -69,9 +71,7 @@ public class fileIOManager : MonoBehaviour
     }
 
     private void Update() {
-        if (Directory.Exists(filePath)) {
-            files = Directory.GetFiles(filePath);
-        }
+        files = Directory.GetFiles(filePath);  
     }
 
     private void OnApplicationQuit()
@@ -125,6 +125,7 @@ public class fileIOManager : MonoBehaviour
     }
 
     public bool isFileExists(string filename) {
+        UnityEngine.Debug.Log(string.Join(" ", files));
         return Array.Exists(files, name => name == filename);
     }
 

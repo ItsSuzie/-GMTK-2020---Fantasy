@@ -113,6 +113,7 @@ public class PlayerCombatController : MonoBehaviour
             foreach (RaycastHit2D hit in hits) {
                 // Debug.Log("Hit " + hit.transform.name);
                 hit.transform.GetComponent<Enemy>().TakeDamage();
+                Debug.Log("Player Hit" + hit.transform.name + "!");
             }
         }
     }
