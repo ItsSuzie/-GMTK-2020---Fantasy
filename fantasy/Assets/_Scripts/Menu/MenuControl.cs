@@ -82,7 +82,7 @@ public class MenuControl : MonoBehaviour
         #endif
 
         #if UNITY_STANDALONE_LINUX
-            readmePath = filePath + "/README.forest";
+            readmePath = filePath + "/README.txt";
             using (StreamWriter sw = File.CreateText(readmePath))
             {
                 sw.WriteLine("\n\n\nYou are Wander");
@@ -107,7 +107,7 @@ public class MenuControl : MonoBehaviour
                 sw.WriteLine("");
                 sw.Close();
             }
-            Process.Start(filePath + readmePath);
+            // Process.Start(filePath + readmePath);
         #endif
     }
 
