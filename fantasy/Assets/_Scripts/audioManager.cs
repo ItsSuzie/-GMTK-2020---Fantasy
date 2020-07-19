@@ -21,7 +21,7 @@ public class audioManager : MonoBehaviour
         audioSource.Play();
         audioSource.loop = true;
 
-        IOmanager.createFileFromString("Glitch");
+        //IOmanager.createFileFromString("Glitch");
     }
 
     private void Update() {
