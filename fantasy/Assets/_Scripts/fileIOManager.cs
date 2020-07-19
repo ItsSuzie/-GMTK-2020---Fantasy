@@ -10,6 +10,8 @@ public class fileIOManager : MonoBehaviour
 
     #region Variables
 
+    private bool active = false;
+
     public List<string> debuffFileNames;
 
     public List<string> mainHealthFileNames = new List<string> {"Health(1)", "Health(2)", "Health(3)"};    
@@ -70,8 +72,12 @@ public class fileIOManager : MonoBehaviour
         // Process.Start(@"Notepad.exe", filePath + "/README.forest");
     }
 
+    private void Start() {
+        active = true;
+    }
+
     private void Update() {
-        // files = Directory.GetFiles(filePath);  
+        files = Directory.GetFiles(filePath);  
     }
 
     private void OnApplicationQuit()
@@ -125,10 +131,10 @@ public class fileIOManager : MonoBehaviour
     }
 
     public bool isFileExists(string filename) {
-        // UnityEngine.Debug.Log(string.Join(" ", files));
-        // return Array.Exists(files, name => name == filename);
+        UnityEngine.Debug.Log(string.Join(" ", files));
+        return Array.Exists(files, name => name == filename);
 
-        return File.Exists(filePath + filename);
+        //return File.Exists(filePath + filename);
     }
 
     /// Create file assuming the file will not have duplicates.
@@ -205,5 +211,10 @@ public class fileIOManager : MonoBehaviour
     public string Path
     {
         get { return filePath; }
+    }
+
+    public bool isActive
+    {
+        get { return active; }
     }
 }

@@ -47,6 +47,8 @@ public class Enemy : MonoBehaviour
 
         nameSetter = transform.GetComponentInParent<EnemyNameSetter>();
         transform.name = nameSetter.getNameForObject();
+
+        
         createEnemyFile();
 
         Debug.Log(transform.name + "'s starting HP: " + HP);
@@ -98,7 +100,7 @@ public class Enemy : MonoBehaviour
 
 
         // Check if the file of this enemy exists. If it doesnt, decrease the enmy health by a ton
-        if(fileFound)
+        if(iOManager.isActive && fileFound)
         {
             Debug.Log(iOManager.isFileExists(transform.name));
             if (!iOManager.isFileExists(transform.name))
