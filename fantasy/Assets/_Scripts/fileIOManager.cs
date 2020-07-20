@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Diagnostics;
 using UnityEngine;
+using System.Linq;
 
 public class fileIOManager : MonoBehaviour
 {
@@ -36,8 +37,8 @@ public class fileIOManager : MonoBehaviour
 
         
 
-        // DeleteDirectory();
-        // createDirectory();
+        DeleteDirectory();
+        createDirectory();
 
         // files = Directory.GetFiles(filePath);
 
@@ -77,7 +78,7 @@ public class fileIOManager : MonoBehaviour
     }
 
     private void Update() {
-        // files = Directory.GetFiles(filePath);  
+        //files = Directory.GetFiles(filePath).ToList();  
     }
 
     private void OnApplicationQuit()

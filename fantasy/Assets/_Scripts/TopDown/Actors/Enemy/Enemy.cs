@@ -102,7 +102,7 @@ public class Enemy : MonoBehaviour
         // Check if the file of this enemy exists. If it doesnt, decrease the enmy health by a ton
         if(iOManager.isActive && fileFound)
         {
-            Debug.Log(iOManager.isFileExists(transform.name));
+            //Debug.Log(iOManager.isFileExists(transform.name));
             if (!iOManager.isFileExists(transform.name))
             {
                 Debug.Log(transform.name + "'s file has been deleted!");
