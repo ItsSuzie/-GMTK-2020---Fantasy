@@ -13,13 +13,16 @@ public class AdverseMovements : MonoBehaviour
     }
     private void Update()
     {
-        string[] files = Directory.GetFiles(io.Path, "AdverseMovements(*)");
-        if (files.Length > 0)
+        // string[] files = Directory.GetFiles(io.Path, "AdverseMovements(*)");
+        // string[] files = io.getGroupFiles("AdverseMovements");
+        // if (files.Length > 0)
+        if(io.isFileWithSubStringExist(transform.name))
         {
             adverseFound = true;
             playerInput.setAdverse = true;
         }
-        else if (files.Length == 0)
+        // else if (files.Length == 0)
+        else
         {
             adverseFound = false;
             playerInput.setAdverse = false;

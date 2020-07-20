@@ -18,7 +18,7 @@ public class fileIOManager : MonoBehaviour
 
     public List<string> audioGlitchFiles = new List<string> {"Glitch(1)", "Glitch(2)"};
 
-    private string[] files;
+    private List<string> files;
 
     public string rootFilePath;     // The file path root directory where the files will be stored
     private string filePath;        // the whole file path
@@ -36,8 +36,8 @@ public class fileIOManager : MonoBehaviour
 
         
 
-        DeleteDirectory();
-        createDirectory();
+        // DeleteDirectory();
+        // createDirectory();
 
         // files = Directory.GetFiles(filePath);
 
@@ -77,12 +77,13 @@ public class fileIOManager : MonoBehaviour
     }
 
     private void Update() {
-        files = Directory.GetFiles(filePath);  
+        // files = Directory.GetFiles(filePath);  
     }
 
     private void OnApplicationQuit()
     {
         DeleteDirectory();
+        files = null;
     }
 
     #region fileManagement
@@ -114,33 +115,65 @@ public class fileIOManager : MonoBehaviour
             }
     }
 
+
+    /// <Summary>
+    /// Creates the directory for reading and writing files into
+    /// </Summary>
     private void createDirectory()
     {
         if(!Directory.Exists(filePath))
         {
             DirectoryInfo di = Directory.CreateDirectory(filePath);
+            files = new List<string>();
         }
     }
+
 
     public void DeleteFile(string fileToDelete)
     {
         if(Directory.Exists(filePath))
         {
             File.Delete(filePath + fileToDelete);
+            files.Remove(fileToDelete);
         }
     }
 
-    public bool isFileExists(string filename) {
-        UnityEngine.Debug.Log(string.Join(" ", files));
-        return Array.Exists(files, name => name == filename);
+    
+    public void deleteFileFromString(string fileToCreate)
+    {
 
+        // Debug.Log("Deleting File" + filePath + fileToCreate + "!");
+        File.Delete(filePath + fileToCreate);
+        files.Remove(fileToCreate);
+    }
+
+    public bool isFileExists(string filename) {
+        // UnityEngine.Debug.Log(string.Join(" ", files));
+        // return Array.Exists(files, name => name == filename);
         //return File.Exists(filePath + filename);
+        return files.Contains(filename);
+    }
+
+    public bool isFileWithSubStringExist(string fileToFind)
+    {
+        // List<string> filesFound = files.Where(files => files.IndexOf());
+        for (int i = 0; i < files.Count; i++)
+        {
+            // If we know the file exists, then just return true;
+            if(files[i].Contains(fileToFind))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /// Create file assuming the file will not have duplicates.
     public void CreateFileFromStringNoDuplicates(string fileToCreate)
     {
         File.CreateText(filePath + fileToCreate);
+        files.Add(fileToCreate);
     }
 
     public void createFileFromString(string fileToCreate)
@@ -154,6 +187,7 @@ public class fileIOManager : MonoBehaviour
         int fileCount = Directory.GetFiles(filePath, fileToCreate + "(*)", SearchOption.TopDirectoryOnly).Length;
         // Debug.Log("Creating file " + fileToCreate + "(" + (fileCount + 1) + ")");
         File.CreateText(filePath + fileToCreate + "(" + (fileCount + 1) + ")");
+        files.Add("(" + (fileCount + 1) + ")");
     }
 
     public void createFileFromDebuffListRandom()
@@ -198,12 +232,6 @@ public class fileIOManager : MonoBehaviour
         createFileFromString(fileToCreate);
     }
 
-    public void deleteFileFromString(string fileToCreate)
-    {
-
-        // Debug.Log("Deleting File" + filePath + fileToCreate + "!");
-        File.Delete(filePath + fileToCreate);
-    }
 
     #endregion
 
